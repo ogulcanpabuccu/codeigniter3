@@ -70,7 +70,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			</div>
 
-dsadas
+
 
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 				<div class="row">
