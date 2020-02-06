@@ -55,8 +55,3 @@ class Kullanici extends CI_Controller
 		redirect("Kullanici/index");
 	}
 }
-
-
-public function oldumu(){
-	
-}
