@@ -115,8 +115,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div class="easyui-texteditor" title="TextEditor" style="width:700px;height:300px;padding:20px">
 							<h3 style="text-align:center">TextEditor</h3>
 							<p style="text-align:center">TextEditor is a lightweight html5 editor based on EasyUI. It is completely customizable to fit your needs.</p>
-						</div>
 
+
+						</div>
+					asda	<div id="te" style="width:700px;"></div>
 					</div>
 				</div>
 			</div>
@@ -127,6 +129,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 </body>
 <footer>
+	<script>
+		$(function() {
+			$('#te').texteditor({
+				dsadsada
+			});
+		});
+	</script>
 	<script type="text/javascript" src="/assets/texteditor/jquery.texteditor.js"></script>
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>

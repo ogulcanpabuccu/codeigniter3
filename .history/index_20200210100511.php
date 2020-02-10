@@ -1,5 +1,5 @@
 <?php
-date_default_timezone_set('Europe/Istanbul');
+date_default_timezone_set('Etc/GMT-3');
 
 /**
  * CodeIgniter

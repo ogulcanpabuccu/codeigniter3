@@ -11,7 +11,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 	<link rel="stylesheet" type="text/css" href="/assets/themes/default/easyui.css">
 	<link rel="stylesheet" type="text/css" href="/assets/themes/icon.css">
-	<link rel="stylesheet" type="text/css" href="/assets/texteditor/texteditor.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 	<title>Welcome to CodeIgniter</title>
@@ -112,11 +111,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				<div class="row">
 					<div class="col-md-12">
-						<div class="easyui-texteditor" title="TextEditor" style="width:700px;height:300px;padding:20px">
-							<h3 style="text-align:center">TextEditor</h3>
-							<p style="text-align:center">TextEditor is a lightweight html5 editor based on EasyUI. It is completely customizable to fit your needs.</p>
-						</div>
 
+					<table class="easyui-datagrid">
+    <thead>
+        <tr>
+            <th data-options="field:'code'">Code</th>
+            <th data-options="field:'name'">Name</th>
+            <th data-options="field:'price'">Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>001</td><td>name1</td><td>2323</td>
+        </tr>
+        <tr>
+            <td>002</td><td>name2</td><td>4612</td>
+        </tr>
+    </tbody>
+</table>
 					</div>
 				</div>
 			</div>
@@ -127,7 +139,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 </body>
 <footer>
-	<script type="text/javascript" src="/assets/texteditor/jquery.texteditor.js"></script>
+
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 </footer>
