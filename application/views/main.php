@@ -72,8 +72,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			</div>
 
-
-
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<form action="" method="POST" onsubmit="return false;" id="FormID1">
@@ -105,7 +103,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<option value="3">3</option>
 							</select>
 
-							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false"  value="" style="width:150px">
+							<input class="easyui-datetimebox" name="day" id="day1" data-options="required:true,showSeconds:false" value="" prompt="Ay/Gün/Yıl Saat:Dakika" style="width:150px">
 
 						</div>
 
@@ -125,12 +123,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 			</form>
 
+
 		</div>
 
 	</div>
 </body>
 <footer>
-	<script type="text/javascript" src="/assets/texteditor/jquery.texteditor.js"></script>
+
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
@@ -138,17 +137,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			$.sorukaydet = function() {
 				$.ajax({
-					url:'/kullanici/kaydet',
+					url: '/kullanici/kaydet',
 					type: 'POST',
 					dataType: 'json',
 					data: $('#FormID1').serialize(),
 					success: function(gelenveri) {
-						if(gelenveri.hata){
+						if (gelenveri.hata) {
 							$("#sonuc").html(gelenveri.hata).show();
-						}else {
+						} else {
 							$("#sonuc").html(gelenveri.ok).show();
 						}
-					
+
 					}
 				});
 			}

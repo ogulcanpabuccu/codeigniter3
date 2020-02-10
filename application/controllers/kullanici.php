@@ -71,38 +71,50 @@ class Kullanici extends CI_Controller
 
 	public function kaydet()
 	{
-		
+
+
 		if ($_POST) {
 
 
-			$alici= $this->input->post('alici');
-		
-			$alici=$_POST["alici"];
-			$soran=$_POST["soran"];
-			$onem=$_POST["onem"];
-			$day=$_POST["day"];
-			$sorudetay=$_POST["sorudetay"];
+			$alici = $this->input->post('alici');
+			$soran = $this->input->post('soran');
+			$onem = $this->input->post('onem');
+			$day = $this->input->post('day');
+			$sorudetay = $this->input->post('sorudetay');
 
-
-
-			$err=0;
-			if(empty($alici)){
+			$err = 0;
+			if (empty($alici)) {
 				$err++;
-				$hataMesaji = 'alıcıyı yaz';
+				$hataMesaji = 'Alıcı Seçin';
+			}
+			if (empty($soran)) {
+				$err++;
+				$hataMesaji = 'Tekrar Giriş Yapın.';
+			}
+			if (empty($onem)) {
+				$err++;
+				$hataMesaji = 'Önem Derecesini Seçin';
+			}
+			if (empty($day)) {
+				$err++;
+				$hataMesaji = 'Tarih Saat Seçin';
 			}
 
-			if($err > 0){
-
-			} else{
-				// modele git
+			if (!empty($day) && (2 != strpos($day, "/") || 5 != strpos($day, "/", 4) || 13 != strpos($day, ":"))) {
+				$err++;
+				$hataMesaji = 'Tarih Saat Formatıyla oynaşma';
 			}
 
+			if (empty($sorudetay)) {
+				$err++;
+				$hataMesaji = 'Sorunuzu Girin';
+			}
 
-
-
-			
-			echo json_encode($array);
+			if ($err > 0) {
+				echo $hataMesaji;
+			} else {
+				echo  "odlu paşam";
+			}
 		}
-		
 	}
 }
