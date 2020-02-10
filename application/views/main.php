@@ -131,5 +131,4 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 </footer>
-
 </html>
