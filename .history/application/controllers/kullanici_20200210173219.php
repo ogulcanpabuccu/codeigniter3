@@ -80,15 +80,9 @@ class Kullanici extends CI_Controller
 			$day=$_POST["day"];
 			$sorudetay=$_POST["sorudetay"];
 
-			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
+			if (!$alici || !$soran || !$onem || !$day || $sorudetay ) {
 				
-				$array["hata"]= "Eksik Alan Bırakmaydsaın";
-			} elseif () {
-				# code...
-			} 
-			
-			else {
-				$array["ok"]= "tamamdır";
+				$array["hata"]= 'Eksik Alan Bırakmayın';
 			}
 		
 			echo json_encode($array);
@@ -96,3 +90,6 @@ class Kullanici extends CI_Controller
 		
 	}
 }
+
+
+//$array["ok"]= 'tamamdır';

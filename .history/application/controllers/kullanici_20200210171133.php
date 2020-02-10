@@ -80,18 +80,11 @@ class Kullanici extends CI_Controller
 			$day=$_POST["day"];
 			$sorudetay=$_POST["sorudetay"];
 
-			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
+			if (!$alici || !$soran || !$onem || !$day || $sorudetay ) {
 				
-				$array["hata"]= "Eksik Alan Bırakmaydsaın";
-			} elseif () {
-				# code...
-			} 
-			
-			else {
-				$array["ok"]= "tamamdır";
+				$array["hata"]= '<font color="red">Eksik Alan Bırakmayın</font>';
 			}
 		
-			echo json_encode($array);
 		}
 		
 	}

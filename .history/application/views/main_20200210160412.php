@@ -14,7 +14,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" type="text/css" href="/assets/texteditor/texteditor.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+	<script type="text/javascript" >
+$(function(){
 
+
+
+});
+
+
+
+	</script>
 	<title>Welcome to CodeIgniter</title>
 
 
@@ -76,52 +85,51 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<form action="" method="POST" onsubmit="return false;" id="FormID1">
-					<div class="col-md-12">
-						<label>Soran : </label> <input class="easyui-textbox" readonly style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
-					</div>
+<form action="">
+				<div class="col-md-12">
+					<label>Soran : </label> <input class="easyui-textbox" disabled style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
+				</div>
 
-					<div class="col-md-12">
+				<div class="col-md-12">
 
-						<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
-							<option value="0">Kullanıcı Seçiniz</option>
-							<? foreach ($kullanicilar as $kullanici) { ?>
-								<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
-									<option value="<? echo $kullanici->kullanici_id; ?>"><? echo $kullanici->kullanici_mail; ?></option>
-								<? } ?>
+					<label>Alıcı Seç : </label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+						<option value="0" readonly >Kullanıcı Seçiniz</option>
+						<? foreach ($kullanicilar as $kullanici) { ?>
+							<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
+								<option name="alici" value="<? echo $kullanici->kullanici_id; ?>"><? echo $kullanici->kullanici_mail; ?></option>
 							<? } ?>
+						<? } ?>
+					</select>
+				</div>
+
+				<div class="row">
+
+
+
+					<div class="col-md-6">
+
+						<label>Önem Durumu :</label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+							<option name="onem" value="1">1</option>
+							<option name="onem" value="2">2</option>
+							<option name="onem" value="3">3</option>
 						</select>
-					</div>
 
-					<div class="row">
-
-
-
-						<div class="col-md-6">
-
-							<label>Önem Durumu :</label> <select id="onem" name="onem" class="easyui-combobox" style="width:100px;">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-							</select>
-
-							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false"  value="" style="width:150px">
-
-						</div>
+						<input class="easyui-datetimebox" name="day" data-options="required:true,showSeconds:false" value="<?php echo date('d.m.Y H:i:s'); ?>" style="width:150px">
 
 					</div>
 
-					<div class="row">
-						<div class="col-md-12">
+				</div>
 
-							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
+				<div class="row">
+					<div class="col-md-12">
+						
+						<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin" ></textarea>
 
-						</div>
 					</div>
-					<div class="row">
-						<button onclick="$.sorukaydet()" type="submit">Gönder</button>
-					</div>
-					<div id="sonuc"></div>
+				</div>
+				<div class="row">
+					<button onclick="$.sorukaydet()" name="sorukaydet" type="submit" >Gönder</button>
+				</div>
 			</div>
 			</form>
 
@@ -133,29 +141,5 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/texteditor/jquery.texteditor.js"></script>
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
-	<script type="text/javascript">
-		$(function() {
-
-			$.sorukaydet = function() {
-				$.ajax({
-					url:'/kullanici/kaydet',
-					type: 'POST',
-					dataType: 'json',
-					data: $('#FormID1').serialize(),
-					success: function(gelenveri) {
-						if(gelenveri.hata){
-							$("#sonuc").html(gelenveri.hata).show();
-						}else {
-							$("#sonuc").html(gelenveri.ok).show();
-						}
-					
-					}
-				});
-			}
-
-
-		});
-	</script>
 </footer>
-
 </html>

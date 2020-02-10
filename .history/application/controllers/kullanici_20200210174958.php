@@ -83,7 +83,7 @@ class Kullanici extends CI_Controller
 			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
 				
 				$array["hata"]= "Eksik Alan Bırakmaydsaın";
-			} elseif () {
+			} elseif (condition) {
 				# code...
 			} 
 			

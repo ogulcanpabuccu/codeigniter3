@@ -14,7 +14,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<link rel="stylesheet" type="text/css" href="/assets/texteditor/texteditor.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
+	
 	<title>Welcome to CodeIgniter</title>
 
 
@@ -76,14 +76,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<form action="" method="POST" onsubmit="return false;" id="FormID1">
+				<form action="" method="POST"  onsubmit="return false;" id="FormID1" >
 					<div class="col-md-12">
-						<label>Soran : </label> <input class="easyui-textbox" readonly style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
+						<label>Soran : </label> <input class="easyui-textbox" disabled style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
 					</div>
 
 					<div class="col-md-12">
 
-						<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
+						<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox"  style="width:100px;">
 							<option value="0">Kullanıcı Seçiniz</option>
 							<? foreach ($kullanicilar as $kullanici) { ?>
 								<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
@@ -105,7 +105,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<option value="3">3</option>
 							</select>
 
-							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false"  value="" style="width:150px">
+							<input class="easyui-datetimebox" name="day" data-options="required:true,showSeconds:false" value="<?php echo date('d.m.Y H:i:s'); ?>" style="width:150px">
 
 						</div>
 
@@ -119,9 +119,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 					</div>
 					<div class="row">
-						<button onclick="$.sorukaydet()" type="submit">Gönder</button>
+						<button onclick="$.sorukaydet()"  type="submit">Gönder</button>
 					</div>
-					<div id="sonuc"></div>
 			</div>
 			</form>
 
@@ -136,21 +135,43 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript">
 		$(function() {
 
-			$.sorukaydet = function() {
-				$.ajax({
-					url:'/kullanici/kaydet',
-					type: 'POST',
-					dataType: 'json',
-					data: $('#FormID1').serialize(),
-					success: function(gelenveri) {
-						if(gelenveri.hata){
-							$("#sonuc").html(gelenveri.hata).show();
-						}else {
-							$("#sonuc").html(gelenveri.ok).show();
-						}
-					
-					}
-				});
+			$.sorukaydet=function(){
+				var soran =$("#soran").val();
+				var alici =$("#alici").val();
+				var onem =$("#onem").val();
+				var sorudetay =$("#sorudetay").val();
+				var day =$("#day").val();
+
+
+var postDegeri = $( '#FormID1' ).serialize();
+
+
+
+
+  $.ajax({
+                url: '/kullanici/kaydet',
+                type: 'POST',
+                dataType: 'json',
+                data: { a: "örnek", b: true },
+                success: function (gelenveri) {
+ 
+                },
+                error: function (hata) {
+ 
+                }
+            });
+
+
+
+
+
+
+
+
+
+
+
+				
 			}
 
 

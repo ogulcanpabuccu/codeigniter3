@@ -66,33 +66,8 @@ class Kullanici extends CI_Controller
 
 	public function surum()
 	{
-		$this->load->view('surum');
-	}
-
-	public function kaydet()
-	{
-		
-		if ($_POST) {
-		
-			$alici=$_POST["alici"];
-			$soran=$_POST["soran"];
-			$onem=$_POST["onem"];
-			$day=$_POST["day"];
-			$sorudetay=$_POST["sorudetay"];
-
-			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
-				
-				$array["hata"]= "Eksik Alan Bırakmaydsaın";
-			} elseif () {
-				# code...
-			} 
-			
-			else {
-				$array["ok"]= "tamamdır";
-			}
-		
-			echo json_encode($array);
-		}
-		
+		<?php
+echo 'Current PHP version: ' . phpversion();
+?>
 	}
 }

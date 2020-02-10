@@ -105,7 +105,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<option value="3">3</option>
 							</select>
 
-							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false"  value="" style="width:150px">
+							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false" closeText value="" style="width:150px">
 
 						</div>
 
@@ -146,6 +146,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						if(gelenveri.hata){
 							$("#sonuc").html(gelenveri.hata).show();
 						}else {
+
 							$("#sonuc").html(gelenveri.ok).show();
 						}
 					

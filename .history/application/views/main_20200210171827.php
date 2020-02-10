@@ -78,7 +78,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				<form action="" method="POST" onsubmit="return false;" id="FormID1">
 					<div class="col-md-12">
-						<label>Soran : </label> <input class="easyui-textbox" readonly style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
+						<label>Soran : </label> <input class="easyui-textbox" style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
 					</div>
 
 					<div class="col-md-12">
@@ -105,7 +105,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								<option value="3">3</option>
 							</select>
 
-							<input class="easyui-datetimebox"  name="day" data-options="required:true,showSeconds:false"  value="" style="width:150px">
+							<input class="easyui-datetimebox" name="day" data-options="required:true,showSeconds:false" value="" style="width:150px">
 
 						</div>
 
@@ -146,6 +146,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						if(gelenveri.hata){
 							$("#sonuc").html(gelenveri.hata).show();
 						}else {
+
 							$("#sonuc").html(gelenveri.ok).show();
 						}
 					
