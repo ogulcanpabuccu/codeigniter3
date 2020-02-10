@@ -83,24 +83,17 @@ class Kullanici extends CI_Controller
 			$day=$_POST["day"];
 			$sorudetay=$_POST["sorudetay"];
 
-
-
-			$err=0;
-			if(empty($alici)){
-				$err++;
-				$hataMesaji = 'alıcıyı yaz';
-			}
-
-			if($err > 0){
-
-			} else{
-				// modele git
-			}
-
-
-
-
+			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
+				
+				$array["hata"]= "Eksik Alan Bırakmaydsaın";
+			} elseif () {
+				# code...
+			} 
 			
+			else {
+				$array["ok"]= "tamamdır";
+			}
+		
 			echo json_encode($array);
 		}
 		

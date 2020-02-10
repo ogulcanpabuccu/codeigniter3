@@ -91,16 +91,17 @@ class Kullanici extends CI_Controller
 				$hataMesaji = 'alıcıyı yaz';
 			}
 
-			if($err > 0){
-
-			} else{
-				// modele git
-			}
-
-
-
-
+			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
+				
+				$array["hata"]= "Eksik Alan Bırakmaydsaın";
+			} elseif () {
+				# code...
+			} 
 			
+			else {
+				$array["ok"]= "tamamdır";
+			}
+		
 			echo json_encode($array);
 		}
 		

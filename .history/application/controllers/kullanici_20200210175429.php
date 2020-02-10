@@ -97,10 +97,17 @@ class Kullanici extends CI_Controller
 				// modele git
 			}
 
-
-
-
+			if (!$alici || !$soran || !$onem || !$day || !$sorudetay ) {
+				
+				$array["hata"]= "Eksik Alan Bırakmaydsaın";
+			} elseif () {
+				# code...
+			} 
 			
+			else {
+				$array["ok"]= "tamamdır";
+			}
+		
 			echo json_encode($array);
 		}
 		
