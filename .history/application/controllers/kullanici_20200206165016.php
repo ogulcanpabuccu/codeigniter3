@@ -54,14 +54,4 @@ class Kullanici extends CI_Controller
 
 		redirect("Kullanici/index");
 	}
-
-	public function dbdeneme()
-	{
-		$query = $this->db->get('kullanici');
-
-		foreach ($query->result() as $row)
-		{
-				echo $row->kullanici_mail . " ";
-		} 
-	}
 }

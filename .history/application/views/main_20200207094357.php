@@ -93,8 +93,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 				<div class="row">
 
-
-
 					<div class="col-md-6">
 
 						<label>Önem Durumu :</label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
@@ -103,7 +101,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<option value="3">3</option>
 						</select>
 					</div>
-					<div class="col-md-6">
+					<div class="col-md-6" align="left">
 						<div id="cc" class="easyui-calendar" style="width:180px;height:180px;"></div>
 
 					</div>

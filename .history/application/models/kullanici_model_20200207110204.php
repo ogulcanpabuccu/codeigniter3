@@ -16,10 +16,8 @@ class kullanici_model extends CI_Model
         return $query->result();
     }
 
-    public function dbmodel()
-    {
-
+    public function dbmodel();{
         
-
     }
+
 }

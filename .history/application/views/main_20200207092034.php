@@ -73,15 +73,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+				<div class="row">
 
 
-				<div class="col-md-12">
-					<label>Soran : </label> <input class="easyui-textbox" disabled style="width:100px" value="<?php echo $this->session->kullanici_mail ?>">
+					Soran :<input class="easyui-textbox" disabled style="width:100px" value="<?php echo $this->session->kullanici_mail ?>">
 				</div>
 
-				<div class="col-md-12">
+				<div class="row mt-2 ">
 
-					<label>Alıcı Seç : </label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+					Alıcı Seç: <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
 						<option value="0" readonly>Kullanıcı Seçiniz</option>
 						<? foreach ($kullanicilar as $kullanici) { ?>
 							<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
@@ -91,25 +91,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</select>
 				</div>
 
-				<div class="row">
-
-
-
-					<div class="col-md-6">
-
-						<label>Önem Durumu :</label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
-					</div>
-					<div class="col-md-6">
-						<div id="cc" class="easyui-calendar" style="width:180px;height:180px;"></div>
-
-					</div>
-
-				</div>
-
+				Önem Durumu <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+					<option value="aa">aaaaaaaaaa</option>
+					<option>bitem2</option>
+					<option>bitem3</option>
+					<option>ditem4</option>
+					<option>eitem5</option>
+				</select>
 			</div>
 
 

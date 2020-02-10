@@ -15,11 +15,4 @@ class kullanici_model extends CI_Model
         $query = $this->db->get('kullanici');
         return $query->result();
     }
-
-    public function dbmodel()
-    {
-
-        
-
-    }
 }

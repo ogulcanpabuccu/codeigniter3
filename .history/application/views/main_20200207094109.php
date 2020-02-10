@@ -90,32 +90,27 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<? } ?>
 					</select>
 				</div>
+				<div class="col-md-12">
 
-				<div class="row">
-
-
-
-					<div class="col-md-6">
-
-						<label>Önem Durumu :</label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-						</select>
+					<label>Önem Durumu :</label> <select id="cc" class="easyui-combobox" name="dept" style="width:100px;">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+					</select>
 					</div>
-					<div class="col-md-6">
+					<div class="">
 						<div id="cc" class="easyui-calendar" style="width:180px;height:180px;"></div>
 
 					</div>
 
+
+
 				</div>
+
 
 			</div>
 
-
 		</div>
-
-	</div>
 </body>
 <footer>
 

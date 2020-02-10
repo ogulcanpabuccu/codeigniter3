@@ -57,11 +57,9 @@ class Kullanici extends CI_Controller
 
 	public function dbdeneme()
 	{
-		$query = $this->db->get('kullanici');
-
-		foreach ($query->result() as $row)
-		{
-				echo $row->kullanici_mail . " ";
-		} 
+	
+		$query=$this->db->get('kullanici',array('kullanici_mail' => $mail))->row(1);
+		echo "<pre>";
+		print_r($query);
 	}
 }
