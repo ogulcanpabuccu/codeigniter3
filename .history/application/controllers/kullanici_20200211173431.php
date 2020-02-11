@@ -99,7 +99,7 @@ class Kullanici extends CI_Controller
 			}
 			if (empty($sorukonu)) {
 				$err++;
-				$hataMesaji = 'Konu Belirtin';
+				$hataMesaji = 'Önem Derecesini Seçin';
 			}
 			if (empty($day)) {
 				$err++;
@@ -119,7 +119,7 @@ class Kullanici extends CI_Controller
 			if ($err > 0) {
 				//echo $hataMesaji;
 			} else {
-				$hataMesaji = "bekleme yapma devam et";
+				$hataMesaji = "bekleme yapma devame t";
 				$success = true;
 				//
 				
@@ -147,7 +147,6 @@ class Kullanici extends CI_Controller
 			$arr['success'] = $success;
 			$arr['hataMesaji'] = $hataMesaji;
 
-			
 			echo json_encode($arr);
 		}
 	}

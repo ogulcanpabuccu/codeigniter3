@@ -149,6 +149,7 @@ class Kullanici extends CI_Controller
 
 			
 			echo json_encode($arr);
+			echo json_encode($sorudata);
 		}
 	}
 

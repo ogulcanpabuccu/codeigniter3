@@ -80,7 +80,6 @@ class Kullanici extends CI_Controller
 			$soran = $this->input->post('soran');
 			$onem = $this->input->post('onem');
 			$day = $this->input->post('day');
-			$sorukonu = $this->input->post('sorukonu');
 			$sorudetay = $this->input->post('sorudetay');
 
 			$err = 0;
@@ -96,10 +95,6 @@ class Kullanici extends CI_Controller
 			if (empty($onem)) {
 				$err++;
 				$hataMesaji = 'Önem Derecesini Seçin';
-			}
-			if (empty($sorukonu)) {
-				$err++;
-				$hataMesaji = 'Konu Belirtin';
 			}
 			if (empty($day)) {
 				$err++;
@@ -119,38 +114,13 @@ class Kullanici extends CI_Controller
 			if ($err > 0) {
 				//echo $hataMesaji;
 			} else {
-				$hataMesaji = "bekleme yapma devam et";
-				$success = true;
-				//
-				
-				$sorudata = array(
-					"soran" => $soran,
-					"alici" => $alici,
-					"onem" => $onem,
-					"soru_zaman" => $day,
-					"soru_konu" => $sorukonu,
-					"soru_detay" =>$sorudetay
-				);
-				
-				$sorukaydet = $this->kullanici_model->sorukaydet($sorudata);
-
-				if($sorukaydet){
-					$success = true;
-					$hataMesaji = 'Soru eklendi';
-					$arr['soruId'] = $sorukaydet;
-				} else {
-					$hataMesaji = 'Soru EKlenemedi';
-				}
+				echo  "odlu paşam";
+				$hataMesaji = "bekleme yapma devame t";
 			}
 
-
+			
 			$arr['success'] = $success;
 			$arr['hataMesaji'] = $hataMesaji;
-
-			
-			echo json_encode($arr);
 		}
 	}
-
-	
 }

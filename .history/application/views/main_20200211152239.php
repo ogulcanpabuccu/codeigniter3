@@ -112,13 +112,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="row">
 						<div class="col-md-12">
 
-						<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-
 							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
 
 						</div>
@@ -131,7 +124,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</form>
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<table id="dg"> </table>
+				<table id="dg"></table>
+
 			</div>
 
 		</div>
@@ -144,42 +138,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
 		$('#dg').datagrid({
-			dataType:"json",
-			url: '/kullanici/kaydet',
+			url: 'datagrid_data.json',
 			columns: [
 				[{
-						field: 'soran',
-						title: 'Soran Kişi',
-						width: 80
-					},
-					{
-						field: 'alici',
-						title: 'Kime Sordu',
+						field: 'code',
+						title: 'Code',
 						width: 100
 					},
 					{
-						field: 'onem',
-						title: 'Önemi',
-						width: 60,
-						
+						field: 'name',
+						title: 'Name',
+						width: 100
 					},
 					{
-						field: 'soru_konu',
-						title: 'Konu',
+						field: 'price',
+						title: 'Price',
 						width: 100,
-						
-					},					
-					{
-						field: 'soru_zaman',
-						title: 'Son Cevap Zamanı',
-						width: 130,
-						
+						align: 'right'
 					}
-					
 				]
 			]
 		});
-		
+		$('#dg').datagrid({
+	data: [
+		{f1:'value11', f2:'value12'},
+		{f1:'value21', f2:'value22'}
+	]
+});
 	</script>
 	<script type="text/javascript">
 		$(function() {

@@ -112,13 +112,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="row">
 						<div class="col-md-12">
 
-						<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-
 							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
 
 						</div>
@@ -130,8 +123,20 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</div>
 			</form>
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
-
-				<table id="dg"> </table>
+			<table class="easyui-datagrid" title="Basic DataGrid" style="width:700px;height:250px"
+            data-options="singleSelect:true,collapsible:true,url:'datagrid_data1.json',method:'get'">
+        <thead>
+            <tr>
+                <th data-options="field:'itemid',width:80">Item ID</th>
+                <th data-options="field:'productid',width:100">Product</th>
+                <th data-options="field:'listprice',width:80,align:'right'">List Price</th>
+                <th data-options="field:'unitcost',width:80,align:'right'">Unit Cost</th>
+                <th data-options="field:'attr1',width:250">Attribute</th>
+                <th data-options="field:'status',width:60,align:'center'">Status</th>
+            </tr>
+        </thead>
+    </table>
+ 
 			</div>
 
 		</div>
@@ -143,42 +148,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-		$('#dg').datagrid({
-			dataType:"json",
-			url: '/kullanici/kaydet',
-			columns: [
-				[{
-						field: 'soran',
-						title: 'Soran Kişi',
-						width: 80
-					},
-					{
-						field: 'alici',
-						title: 'Kime Sordu',
-						width: 100
-					},
-					{
-						field: 'onem',
-						title: 'Önemi',
-						width: 60,
-						
-					},
-					{
-						field: 'soru_konu',
-						title: 'Konu',
-						width: 100,
-						
-					},					
-					{
-						field: 'soru_zaman',
-						title: 'Son Cevap Zamanı',
-						width: 130,
-						
-					}
-					
-				]
-			]
-		});
 		
 	</script>
 	<script type="text/javascript">

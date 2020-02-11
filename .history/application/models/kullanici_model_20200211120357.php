@@ -8,10 +8,6 @@ class kullanici_model extends CI_Model
     }
     public function sorular($sorular = [])
     {
-
-        $query=$this->db->get('soru');
-        return $query->result();
-
     }
     public function userCheck($email = '', $sifre = '')
     {
@@ -25,16 +21,7 @@ class kullanici_model extends CI_Model
     public function sorukaydet($sorudata = [])
     {
 
-        $this->db->trans_start();
-
-        $this->db->insert("soru", $sorudata);
-        $soruId = $this->db->insert_id();
-
-        $this->db->trans_complete();
-        if ($this->db->trans_status()){
-            return $soruId;
-        } else {
-            return false;
-        }
+        $result = $this->db->insert("soru", $sorudata);
+        return $result;
     }
 }

@@ -147,7 +147,7 @@ class Kullanici extends CI_Controller
 			$arr['success'] = $success;
 			$arr['hataMesaji'] = $hataMesaji;
 
-			
+			echo json_encode($sorudata);
 			echo json_encode($arr);
 		}
 	}

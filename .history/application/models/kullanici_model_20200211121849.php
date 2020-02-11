@@ -27,14 +27,7 @@ class kullanici_model extends CI_Model
 
         $this->db->trans_start();
 
-        $this->db->insert("soru", $sorudata);
-        $soruId = $this->db->insert_id();
-
-        $this->db->trans_complete();
-        if ($this->db->trans_status()){
-            return $soruId;
-        } else {
-            return false;
-        }
+        $result = $this->db->insert("soru", $sorudata);
+        return $result;
     }
 }

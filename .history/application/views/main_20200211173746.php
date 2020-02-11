@@ -144,13 +144,13 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
 		$('#dg').datagrid({
-			dataType:"json",
+			type:"json",
 			url: '/kullanici/kaydet',
 			columns: [
 				[{
 						field: 'soran',
 						title: 'Soran Kişi',
-						width: 80
+						width: 100
 					},
 					{
 						field: 'alici',
@@ -163,12 +163,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						width: 60,
 						
 					},
-					{
-						field: 'soru_konu',
-						title: 'Konu',
-						width: 100,
-						
-					},					
 					{
 						field: 'soru_zaman',
 						title: 'Son Cevap Zamanı',

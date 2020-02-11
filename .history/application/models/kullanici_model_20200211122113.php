@@ -31,6 +31,7 @@ class kullanici_model extends CI_Model
         $soruId = $this->db->insert_id();
 
         $this->db->trans_complete();
+
         if ($this->db->trans_status()){
             return $soruId;
         } else {
