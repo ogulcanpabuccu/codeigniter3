@@ -134,7 +134,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				<table id="dg"  > </table>
 				
 			</div>
-		
+			<div  id="sorudetay" title="Soru Detay" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+
+				
+			</div>
 
 
 
@@ -161,7 +164,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					title:"#"+row.id+" - "+row.soru_konu,
 					closable:true,
 					href:'/kullanici/sorudetay/'+row.id,
+					
 				});
+
+
 
 			},
 			columns: [

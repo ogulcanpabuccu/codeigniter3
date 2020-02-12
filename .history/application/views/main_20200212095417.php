@@ -112,7 +112,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div class="row">
 						<div class="col-md-12">
 
-							<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
+						<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
 
 						</div>
 					</div>
@@ -131,12 +131,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</form>
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<table id="dg"  > </table>
-				
+				<table id="dg"> </table>
 			</div>
-		
-
-
 
 		</div>
 
@@ -147,24 +143,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-
 		$('#dg').datagrid({
-			url: '/kullanici/sorugonder',
-			width: 800,
+			dataType:"json",
+			url: '/kullanici/gonder',
 			pagination: true,
-			rownumbers: true,
-			ctrlSelect: true,
-			onClickRow(index,row){
-				console.log('row',row);
-
-				$('#tt').tabs('add',{
-					title:"#"+row.id+" - "+row.soru_konu,
-					closable:true,
-					href:'/kullanici/sorudetay/'+row.id,
-				});
-
-			},
-			columns: [
+			rownumbers:true,
+						columns: [
 				[{
 						field: 'soran',
 						title: 'Soran Kişi',
@@ -179,25 +163,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						field: 'onem',
 						title: 'Önemi',
 						width: 60,
-
+						
 					},
 					{
 						field: 'soru_konu',
 						title: 'Konu',
 						width: 100,
-
-					},
+						
+					},					
 					{
 						field: 'soru_zaman',
 						title: 'Son Cevap Zamanı',
 						width: 130,
-
+						
 					}
+					
 				]
 			]
 		});
+		
 	</script>
-	
 	<script type="text/javascript">
 		$(function() {
 

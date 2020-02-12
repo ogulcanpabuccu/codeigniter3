@@ -160,7 +160,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				$('#tt').tabs('add',{
 					title:"#"+row.id+" - "+row.soru_konu,
 					closable:true,
-					href:'/kullanici/sorudetay/'+row.id,
+					href:'/kullanici_model/sorudetay/'+row.id,
 				});
 
 			},

@@ -40,6 +40,7 @@ class kullanici_model extends CI_Model
     public function sorudetay($id = 0)
     {
 
-        return $this->db->where("id", $id)->get("soru")->row(); 
+        $query = $this->db->get('soru');
+
     }
 }

@@ -122,19 +122,19 @@ class Kullanici extends CI_Controller
 				$hataMesaji = "bekleme yapma devam et";
 				$success = true;
 				//
-
+				
 				$sorudata = array(
 					"soran" => $soran,
 					"alici" => $alici,
 					"onem" => $onem,
 					"soru_zaman" => $day,
 					"soru_konu" => $sorukonu,
-					"soru_detay" => $sorudetay
+					"soru_detay" =>$sorudetay
 				);
-
+				
 				$sorukaydet = $this->kullanici_model->sorukaydet($sorudata);
 
-				if ($sorukaydet) {
+				if($sorukaydet){
 					$success = true;
 					$hataMesaji = 'Soru eklendi';
 					$arr['soruId'] = $sorukaydet;
@@ -146,28 +146,11 @@ class Kullanici extends CI_Controller
 
 			$arr['success'] = $success;
 			$arr['hataMesaji'] = $hataMesaji;
-
-
+$arr['sorudata']=$sorudata;
+			
 			echo json_encode($arr);
 		}
 	}
 
-	public function sorugonder()
-	{
-		$sorular = [];
-		$sorular = $this->kullanici_model->sorular();
-		echo json_encode($sorular);
-	}
-
-
-	public function sorudetay($id)
-	{
-
-		
-
-		$sorudetay = $this->kullanici_model->sorudetay($id);
-		$viewData['sorudetay'] = $sorudetay;
-
-		$this->load->view("soru", $viewData);
-	}
+	
 }

@@ -132,9 +132,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<table id="dg"  > </table>
+				<div onclick="$.sorudetay()">aaa</div>
+			</div>
+			<div  id="sorudetay" title="Soru Detay" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+
 				
 			</div>
-		
 
 
 
@@ -147,23 +150,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-
 		$('#dg').datagrid({
 			url: '/kullanici/sorugonder',
 			width: 800,
 			pagination: true,
 			rownumbers: true,
 			ctrlSelect: true,
-			onClickRow(index,row){
-				console.log('row',row);
-
-				$('#tt').tabs('add',{
-					title:"#"+row.id+" - "+row.soru_konu,
-					closable:true,
-					href:'/kullanici/sorudetay/'+row.id,
-				});
-
-			},
 			columns: [
 				[{
 						field: 'soran',
@@ -197,7 +189,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			]
 		});
 	</script>
-	
+	<script type="text/javascript">
+		$(function() {
+			$.sorudetay().click(function() {
+				alert(oldumu); 
+			})
+
+
+		});
+	</script>
 	<script type="text/javascript">
 		$(function() {
 

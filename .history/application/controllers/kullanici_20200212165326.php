@@ -163,8 +163,6 @@ class Kullanici extends CI_Controller
 	public function sorudetay($id)
 	{
 
-		
-
 		$sorudetay = $this->kullanici_model->sorudetay($id);
 		$viewData['sorudetay'] = $sorudetay;
 

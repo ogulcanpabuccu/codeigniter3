@@ -155,7 +155,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			rownumbers: true,
 			ctrlSelect: true,
 			onClickRow(index,row){
-				console.log('row',row);
+				
 
 				$('#tt').tabs('add',{
 					title:"#"+row.id+" - "+row.soru_konu,

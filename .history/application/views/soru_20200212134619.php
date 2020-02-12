@@ -1,0 +1,1 @@
+soru bilgilerini buraya yazdir

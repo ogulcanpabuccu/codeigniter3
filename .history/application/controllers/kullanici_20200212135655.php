@@ -155,19 +155,29 @@ class Kullanici extends CI_Controller
 	public function sorugonder()
 	{
 		$sorular = [];
-		$sorular = $this->kullanici_model->sorular();
+		$sorular= $this->kullanici_model->sorular();		
 		echo json_encode($sorular);
 	}
 
 
-	public function sorudetay($id)
+	public function sorudetay($id=0)
 	{
 
-		
+		$sorular = [];
+		$sorular= $this->kullanici_model->sorular();		
+		echo json_encode($sorular);
+	}
 
-		$sorudetay = $this->kullanici_model->sorudetay($id);
-		$viewData['sorudetay'] = $sorudetay;
 
-		$this->load->view("soru", $viewData);
+
+
+
+
+
+
+		$this->load->view('soru');
+
+
+
 	}
 }

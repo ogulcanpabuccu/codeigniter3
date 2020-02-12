@@ -153,7 +153,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			width: 800,
 			pagination: true,
 			rownumbers: true,
-			ctrlSelect: true,
+			
 			onClickRow(index,row){
 				console.log('row',row);
 

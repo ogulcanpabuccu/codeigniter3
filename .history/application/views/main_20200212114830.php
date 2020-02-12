@@ -131,10 +131,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			</form>
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<table id="dg"  > </table>
-				
+				<table id="dg"> </table>
 			</div>
-		
+			<div title="Sorular2" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
+
+
+				<table id="dg2" style="width:700px;height:250px" url="/kullanici/sorugonder" title="DataGrid - SubGrid" singleSelect="true" fitColumns="true">
+					<thead>
+						<tr>
+							<th field="itemid" width="80">Item ID</th>
+							<th field="productid" width="100">Product ID</th>
+							<th field="listprice" align="right" width="80">List Price</th>
+							<th field="unitcost" align="right" width="80">Unit Cost</th>
+							<th field="attr1" width="220">Attribute</th>
+							<th field="status" width="60" align="center">Status</th>
+						</tr>
+					</thead>
+				</table>
+
+			</div>
 
 
 
@@ -147,23 +162,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<script type="text/javascript" src="/assets/jquery.min.js"></script>
 	<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 	<script type="text/javascript">
-
 		$('#dg').datagrid({
 			url: '/kullanici/sorugonder',
 			width: 800,
 			pagination: true,
 			rownumbers: true,
 			ctrlSelect: true,
-			onClickRow(index,row){
-				console.log('row',row);
-
-				$('#tt').tabs('add',{
-					title:"#"+row.id+" - "+row.soru_konu,
-					closable:true,
-					href:'/kullanici/sorudetay/'+row.id,
-				});
-
-			},
 			columns: [
 				[{
 						field: 'soran',
@@ -197,7 +201,52 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			]
 		});
 	</script>
-	
+	<script type="text/javascript">
+		$('#dg2').datagrid({
+			view: detailview,
+			detailFormatter: function(index, row) {
+				return '<div style="padding:2px"><table class="ddv"></table></div>';
+			},
+			onExpandRow: function(index, row) {
+				var ddv = $(this).datagrid('getRowDetail', index).find('table.ddv');
+				ddv.datagrid({
+					url: 'datagrid22_getdetail.php?itemid=' + row.itemid,
+					fitColumns: true,
+					singleSelect: true,
+					rownumbers: true,
+					loadMsg: '',
+					height: 'auto',
+					columns: [
+						[{
+								field: 'orderid',
+								title: 'Order ID',
+								width: 100
+							},
+							{
+								field: 'quantity',
+								title: 'Quantity',
+								width: 100
+							},
+							{
+								field: 'unitprice',
+								title: 'Unit Price',
+								width: 100
+							}
+						]
+					],
+					onResize: function() {
+						$('#dg2').datagrid('fixDetailRowHeight', index);
+					},
+					onLoadSuccess: function() {
+						setTimeout(function() {
+							$('#dg').datagrid('fixDetailRowHeight', index);
+						}, 0);
+					}
+				});
+				$('#dg').datagrid('fixDetailRowHeight', index);
+			}
+		});
+	</script>
 	<script type="text/javascript">
 		$(function() {
 
