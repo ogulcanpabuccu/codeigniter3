@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 14 Şub 2020, 15:18:23
+-- Üretim Zamanı: 17 Şub 2020, 15:45:43
 -- Sunucu sürümü: 10.4.11-MariaDB
 -- PHP Sürümü: 7.4.2
 
@@ -33,16 +33,35 @@ CREATE TABLE `cevap` (
   `soru_id` int(11) NOT NULL,
   `cevaplayan_id` int(11) NOT NULL DEFAULT 0,
   `cevap_detay` text NOT NULL,
-  `cevaplama_zamanı` datetime NOT NULL DEFAULT current_timestamp()
+  `cevaplama_zamani` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `cevap`
 --
 
-INSERT INTO `cevap` (`id`, `soru_id`, `cevaplayan_id`, `cevap_detay`, `cevaplama_zamanı`) VALUES
+INSERT INTO `cevap` (`id`, `soru_id`, `cevaplayan_id`, `cevap_detay`, `cevaplama_zamani`) VALUES
 (115, 18, 1, 'Güzel günler göreceğiz çocuklar\r\n', '2020-02-14 15:31:22'),
-(116, 18, 1, 'Motorları maviliklere süreceğiz', '2020-02-14 15:31:33');
+(116, 18, 1, 'Motorları maviliklere süreceğiz', '2020-02-14 15:31:33'),
+(117, 19, 1, 'oldumu abe\r\n', '2020-02-17 13:43:18'),
+(118, 27, 1, 'hayat bir zamanlar güzeldi', '2020-02-17 13:46:00'),
+(119, 20, 1, 'güzel güzeell', '2020-02-17 13:46:26'),
+(120, 18, 1, 'yapma bee', '2020-02-17 13:46:43'),
+(121, 29, 1, 'duygularım darmadağın anlayamaaaazsın\r\n', '2020-02-17 13:50:22'),
+(122, 29, 1, 'bendeki aşk sende olsa yaşayamazsın', '2020-02-17 13:50:43'),
+(123, 28, 1, 'buradan bir atlı geçti\r\n', '2020-02-17 13:51:34');
+
+-- --------------------------------------------------------
+
+--
+-- Tablo için tablo yapısı `dosya`
+--
+
+CREATE TABLE `dosya` (
+  `id` int(11) NOT NULL,
+  `dosya_adi` varchar(255) NOT NULL,
+  `dosya_url` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -95,7 +114,8 @@ INSERT INTO `soru` (`id`, `soran`, `alici`, `onem`, `soru_zaman`, `soruldugu_zam
 (20, 'admin', 'huseyin', 1, '02/18/2020 17:43', '2020-02-11 14:43:27', 'konu', 'soru'),
 (27, 'admin', 'kullanici1', 3, '02/26/2020 09:19', '2020-02-12 06:19:31', 'konuuu', 'hayat'),
 (28, 'admin', 'user', 3, '02/11/2020 13:22', '2020-02-12 10:22:39', 'konuuu', 'sorularrr'),
-(29, 'admin', 'kullanici1', 3, '02/18/2020 15:18', '2020-02-12 12:20:34', 'Oldumu Abi', 'Bence oldu abi alt tarafa da cevap alanını ekleyip cevap tablosu ile soru tablo id\'lerini eşleştirebilirsem tek sıkıntı görüntü olacak... ');
+(29, 'admin', 'kullanici1', 3, '02/18/2020 15:18', '2020-02-12 12:20:34', 'Oldumu Abi', 'Bence oldu abi alt tarafa da cevap alanını ekleyip cevap tablosu ile soru tablo id\'lerini eşleştirebilirsem tek sıkıntı görüntü olacak... '),
+(30, 'admin', 'user', 1, '02/18/2020 14:55', '2020-02-17 11:55:12', 'dsa', 'sadsa');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -105,6 +125,12 @@ INSERT INTO `soru` (`id`, `soran`, `alici`, `onem`, `soru_zaman`, `soruldugu_zam
 -- Tablo için indeksler `cevap`
 --
 ALTER TABLE `cevap`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Tablo için indeksler `dosya`
+--
+ALTER TABLE `dosya`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -127,7 +153,13 @@ ALTER TABLE `soru`
 -- Tablo için AUTO_INCREMENT değeri `cevap`
 --
 ALTER TABLE `cevap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+
+--
+-- Tablo için AUTO_INCREMENT değeri `dosya`
+--
+ALTER TABLE `dosya`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
@@ -139,7 +171,7 @@ ALTER TABLE `kullanici`
 -- Tablo için AUTO_INCREMENT değeri `soru`
 --
 ALTER TABLE `soru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
