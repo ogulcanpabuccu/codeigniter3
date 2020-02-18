@@ -86,8 +86,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 						<div id="some-dropzone" class="dropzone"></div>
 
-						<div id="dosyalar"></div>
-						
+						<input type="hidden" name="" value="">
+
 
 					</div>
 					<div class="col-md-12">
@@ -164,12 +164,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script>
 			Dropzone.options.someDropzone = {
-				url: "/file/upload",
-				success: function(data,gelenData) {
-					console.log(gelenData);
-					if (gelenData) {
-						$("#dosyalar").append('<input type="hidden" name="dosyalar[]" value="'+gelenData.resim_yol+'" />');
-					}
+				url: "/kullanici/kaydet",
+				success: function() {
+					if () {
+						$("#drop").append();
+					} 
 				}
 			};
 		</script>

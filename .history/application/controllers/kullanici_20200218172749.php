@@ -79,6 +79,10 @@ class Kullanici extends CI_Controller
 	public function kaydet()
 	{
 
+		echo '<pre>';
+		
+		print_r($_POST);
+		exit;
 		if ($_POST) {
 
 
@@ -88,7 +92,6 @@ class Kullanici extends CI_Controller
 			$day = $this->input->post('day');
 			$sorukonu = $this->input->post('sorukonu');
 			$sorudetay = $this->input->post('sorudetay');
-			$dosyalar = $this->input->post('dosyalar');
 
 			$err = 0;
 			$success = false;
@@ -146,12 +149,6 @@ class Kullanici extends CI_Controller
 					$success = true;
 					$hataMesaji = 'Soru eklendi';
 					$arr['soruId'] = $sorukaydet;
-
-					if(count($dosyalar) > 0){
-						foreach($dosyalar as $resim_yol){
-							// resimler tablosuna soruid ve yol u kaydeden method 
-						}
-					}
 				} else {
 					$hataMesaji = 'Soru EKlenemedi';
 				}

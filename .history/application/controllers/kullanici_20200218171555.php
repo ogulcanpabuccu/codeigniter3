@@ -78,7 +78,6 @@ class Kullanici extends CI_Controller
 
 	public function kaydet()
 	{
-
 		if ($_POST) {
 
 
@@ -88,7 +87,6 @@ class Kullanici extends CI_Controller
 			$day = $this->input->post('day');
 			$sorukonu = $this->input->post('sorukonu');
 			$sorudetay = $this->input->post('sorudetay');
-			$dosyalar = $this->input->post('dosyalar');
 
 			$err = 0;
 			$success = false;
@@ -146,12 +144,6 @@ class Kullanici extends CI_Controller
 					$success = true;
 					$hataMesaji = 'Soru eklendi';
 					$arr['soruId'] = $sorukaydet;
-
-					if(count($dosyalar) > 0){
-						foreach($dosyalar as $resim_yol){
-							// resimler tablosuna soruid ve yol u kaydeden method 
-						}
-					}
 				} else {
 					$hataMesaji = 'Soru EKlenemedi';
 				}
@@ -165,7 +157,26 @@ class Kullanici extends CI_Controller
 			echo json_encode($arr);
 		}
 
+		$config["allowed_types"] = "jpg|png";
+		$config["upload_path"] = "images/upload/";
 
+		$this->load->library("upload", $config);
+
+
+		if ($this->upload->do_upload("file")) {
+
+			$dosya_adi = $this->upload->data("file_name");
+			$data = array(
+
+
+				"resim_ad" => $dosya_adi,
+				"resim_yol" => base_url("images/upload/$dosya_adi")
+
+			);
+
+
+			$this->kullanici_model->fotokaydet($data);
+		}
 	}
 
 

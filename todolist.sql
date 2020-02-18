@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: 127.0.0.1
--- Üretim Zamanı: 17 Şub 2020, 15:45:43
+-- Üretim Zamanı: 18 Şub 2020, 15:32:55
 -- Sunucu sürümü: 10.4.11-MariaDB
 -- PHP Sürümü: 7.4.2
 
@@ -89,6 +89,36 @@ INSERT INTO `kullanici` (`kullanici_id`, `kullanici_mail`, `kullanici_adsoyad`, 
 -- --------------------------------------------------------
 
 --
+-- Tablo için tablo yapısı `resimler`
+--
+
+CREATE TABLE `resimler` (
+  `id` int(11) NOT NULL,
+  `soru_id` int(11) NOT NULL,
+  `resim_ad` varchar(255) NOT NULL,
+  `resim_yol` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `resimler`
+--
+
+INSERT INTO `resimler` (`id`, `soru_id`, `resim_ad`, `resim_yol`) VALUES
+(1, 0, 'indir_(1)2.jpg', 'http://cideneme.io/images/upload/indir_(1)2.jpg'),
+(2, 0, 'indir_(2)2.jpg', 'http://cideneme.io/images/upload/indir_(2)2.jpg'),
+(3, 0, 'indir_(1).jpg', 'http://cideneme.io/images/upload/indir_(1).jpg'),
+(4, 0, 'indir_(1)1.jpg', 'http://cideneme.io/images/upload/indir_(1)1.jpg'),
+(5, 0, 'indir_(1)2.jpg', 'http://cideneme.io/images/upload/indir_(1)2.jpg'),
+(6, 0, 'indir_(1)3.jpg', 'http://cideneme.io/images/upload/indir_(1)3.jpg'),
+(7, 0, 'indir_(1)4.jpg', 'http://cideneme.io/images/upload/indir_(1)4.jpg'),
+(8, 0, 'indir_(2).jpg', 'http://cideneme.io/images/upload/indir_(2).jpg'),
+(9, 0, 'indir_(1)5.jpg', 'http://cideneme.io/images/upload/indir_(1)5.jpg'),
+(10, 0, 'indir_(1)6.jpg', 'http://cideneme.io/images/upload/indir_(1)6.jpg'),
+(11, 0, 'indir_(1)7.jpg', 'http://cideneme.io/images/upload/indir_(1)7.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Tablo için tablo yapısı `soru`
 --
 
@@ -115,7 +145,16 @@ INSERT INTO `soru` (`id`, `soran`, `alici`, `onem`, `soru_zaman`, `soruldugu_zam
 (27, 'admin', 'kullanici1', 3, '02/26/2020 09:19', '2020-02-12 06:19:31', 'konuuu', 'hayat'),
 (28, 'admin', 'user', 3, '02/11/2020 13:22', '2020-02-12 10:22:39', 'konuuu', 'sorularrr'),
 (29, 'admin', 'kullanici1', 3, '02/18/2020 15:18', '2020-02-12 12:20:34', 'Oldumu Abi', 'Bence oldu abi alt tarafa da cevap alanını ekleyip cevap tablosu ile soru tablo id\'lerini eşleştirebilirsem tek sıkıntı görüntü olacak... '),
-(30, 'admin', 'user', 1, '02/18/2020 14:55', '2020-02-17 11:55:12', 'dsa', 'sadsa');
+(30, 'admin', 'user', 1, '02/18/2020 14:55', '2020-02-17 11:55:12', 'dsa', 'sadsa'),
+(32, 'admin', 'user', 3, '02/20/2020 14:29', '2020-02-18 11:29:42', 'rsim denem', 'resim olsunlütfen'),
+(33, 'admin', 'kullanici1', 3, '02/19/2020 14:30', '2020-02-18 11:30:49', 'dasdas', 'dsa'),
+(42, 'admin', 'kullanici1', 3, '02/19/2020 14:34', '2020-02-18 11:34:43', 'hahahahhah', 'ahahhahaha'),
+(43, 'admin', 'kullanici1', 1, '02/11/2020 15:24', '2020-02-18 12:25:01', 'Oldumu Abi', 'dasdas'),
+(46, 'admin', 'user', 2, '02/20/2020 15:25', '2020-02-18 12:25:36', 'dasdas', 'dsad'),
+(48, 'admin', 'user', 3, '02/19/2020 15:27', '2020-02-18 12:27:28', 'haydaaaaaa', 'aaaaaaaaaaa'),
+(49, 'admin', 'kullanici1', 2, '02/19/2020 16:06', '2020-02-18 13:06:35', 'Resim Deneme12223', 'dsadas'),
+(50, 'admin', 'user', 2, '02/19/2020 16:07', '2020-02-18 13:07:19', 'resim deneme123', 'aaaaaaaaa'),
+(51, 'admin', 'kullanici1', 1, '02/19/2020 16:20', '2020-02-18 13:20:25', 'olsun', 'artık');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -138,6 +177,12 @@ ALTER TABLE `dosya`
 --
 ALTER TABLE `kullanici`
   ADD PRIMARY KEY (`kullanici_id`);
+
+--
+-- Tablo için indeksler `resimler`
+--
+ALTER TABLE `resimler`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `soru`
@@ -168,10 +213,16 @@ ALTER TABLE `kullanici`
   MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- Tablo için AUTO_INCREMENT değeri `resimler`
+--
+ALTER TABLE `resimler`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- Tablo için AUTO_INCREMENT değeri `soru`
 --
 ALTER TABLE `soru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -168,7 +168,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 				success: function(data,gelenData) {
 					console.log(gelenData);
 					if (gelenData) {
-						$("#dosyalar").append('<input type="hidden" name="dosyalar[]" value="'+gelenData.resim_yol+'" />');
+						$("#dosyalar").append('<input name="dosyalar[]" value="" />');
 					}
 				}
 			};

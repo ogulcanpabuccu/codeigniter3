@@ -149,7 +149,7 @@ class Kullanici extends CI_Controller
 
 					if(count($dosyalar) > 0){
 						foreach($dosyalar as $resim_yol){
-							// resimler tablosuna soruid ve yol u kaydeden method 
+							// resimler tablosuna soruid ve 
 						}
 					}
 				} else {

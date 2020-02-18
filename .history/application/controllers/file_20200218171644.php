@@ -16,26 +16,21 @@ class File extends CI_Controller
 		$config["allowed_types"] = "jpg|png";
 		$config["upload_path"] = "images/upload/";
 
-		$success = false;
-		$resim_ad = '';
-		$resim_yol = '';
-
 		$this->load->library("upload", $config);
 
 
 		if ($this->upload->do_upload("file")) {
-			$success = true;
-			$resim_ad = $this->upload->data("file_name");
-			$resim_yol = "/images/upload/".$resim_ad;
+
+			$dosya_adi = $this->upload->data("file_name");
+			$data = array(
+
+
+				"resim_ad" => $dosya_adi,
+				"resim_yol" => base_url("images/upload/$dosya_adi")
+
+			);
+			$this->kullanici_model->fotokaydet($data);
 		}
-
-		$arr['success'] = $success;
-		$arr['resim_ad'] = $resim_ad;
-		$arr['resim_yol'] = $resim_yol;
-
-
-		header('Content-Type: application/json');
-		echo json_encode($arr);
-
+		//print_r($_FILES);
 	}
 }

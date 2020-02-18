@@ -32,9 +32,6 @@ class File extends CI_Controller
 		$arr['success'] = $success;
 		$arr['resim_ad'] = $resim_ad;
 		$arr['resim_yol'] = $resim_yol;
-
-
-		header('Content-Type: application/json');
 		echo json_encode($arr);
 
 	}

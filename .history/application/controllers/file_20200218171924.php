@@ -24,18 +24,15 @@ class File extends CI_Controller
 
 
 		if ($this->upload->do_upload("file")) {
-			$success = true;
 			$resim_ad = $this->upload->data("file_name");
-			$resim_yol = "/images/upload/".$resim_ad;
+			$resim_yol = "/images/upload/".$dosya_adi;
 		}
 
 		$arr['success'] = $success;
 		$arr['resim_ad'] = $resim_ad;
 		$arr['resim_yol'] = $resim_yol;
-
-
-		header('Content-Type: application/json');
 		echo json_encode($arr);
+
 
 	}
 }

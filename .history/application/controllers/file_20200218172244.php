@@ -35,6 +35,7 @@ class File extends CI_Controller
 
 
 		header('Content-Type: application/json');
+
 		echo json_encode($arr);
 
 	}
