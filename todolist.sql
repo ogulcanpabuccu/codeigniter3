@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 18 Şub 2020, 15:32:55
--- Sunucu sürümü: 10.4.11-MariaDB
--- PHP Sürümü: 7.4.2
+-- Anamakine: localhost
+-- Üretim Zamanı: 18 Şub 2020, 21:08:29
+-- Sunucu sürümü: 8.0.17
+-- PHP Sürümü: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cevap` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
-  `cevaplayan_id` int(11) NOT NULL DEFAULT 0,
+  `cevaplayan_id` int(11) NOT NULL DEFAULT '0',
   `cevap_detay` text NOT NULL,
-  `cevaplama_zamani` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `cevaplama_zamani` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `cevap`
@@ -54,14 +54,23 @@ INSERT INTO `cevap` (`id`, `soru_id`, `cevaplayan_id`, `cevap_detay`, `cevaplama
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `dosya`
+-- Tablo için tablo yapısı `dosyalar`
 --
 
-CREATE TABLE `dosya` (
+CREATE TABLE `dosyalar` (
   `id` int(11) NOT NULL,
-  `dosya_adi` varchar(255) NOT NULL,
+  `soru_id` int(11) NOT NULL,
   `dosya_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Tablo döküm verisi `dosyalar`
+--
+
+INSERT INTO `dosyalar` (`id`, `soru_id`, `dosya_url`) VALUES
+(1, 53, '/images/upload/indir_(1)14.jpg'),
+(2, 53, '/images/upload/indir6.jpg'),
+(3, 57, '/images/upload/indir7.jpg');
 
 -- --------------------------------------------------------
 
@@ -71,9 +80,9 @@ CREATE TABLE `dosya` (
 
 CREATE TABLE `kullanici` (
   `kullanici_id` int(11) NOT NULL,
-  `kullanici_mail` varchar(80) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_adsoyad` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_password` varchar(50) COLLATE utf8_turkish_ci NOT NULL
+  `kullanici_mail` varchar(80) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_adsoyad` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
@@ -89,36 +98,6 @@ INSERT INTO `kullanici` (`kullanici_id`, `kullanici_mail`, `kullanici_adsoyad`, 
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `resimler`
---
-
-CREATE TABLE `resimler` (
-  `id` int(11) NOT NULL,
-  `soru_id` int(11) NOT NULL,
-  `resim_ad` varchar(255) NOT NULL,
-  `resim_yol` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Tablo döküm verisi `resimler`
---
-
-INSERT INTO `resimler` (`id`, `soru_id`, `resim_ad`, `resim_yol`) VALUES
-(1, 0, 'indir_(1)2.jpg', 'http://cideneme.io/images/upload/indir_(1)2.jpg'),
-(2, 0, 'indir_(2)2.jpg', 'http://cideneme.io/images/upload/indir_(2)2.jpg'),
-(3, 0, 'indir_(1).jpg', 'http://cideneme.io/images/upload/indir_(1).jpg'),
-(4, 0, 'indir_(1)1.jpg', 'http://cideneme.io/images/upload/indir_(1)1.jpg'),
-(5, 0, 'indir_(1)2.jpg', 'http://cideneme.io/images/upload/indir_(1)2.jpg'),
-(6, 0, 'indir_(1)3.jpg', 'http://cideneme.io/images/upload/indir_(1)3.jpg'),
-(7, 0, 'indir_(1)4.jpg', 'http://cideneme.io/images/upload/indir_(1)4.jpg'),
-(8, 0, 'indir_(2).jpg', 'http://cideneme.io/images/upload/indir_(2).jpg'),
-(9, 0, 'indir_(1)5.jpg', 'http://cideneme.io/images/upload/indir_(1)5.jpg'),
-(10, 0, 'indir_(1)6.jpg', 'http://cideneme.io/images/upload/indir_(1)6.jpg'),
-(11, 0, 'indir_(1)7.jpg', 'http://cideneme.io/images/upload/indir_(1)7.jpg');
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `soru`
 --
 
@@ -128,10 +107,10 @@ CREATE TABLE `soru` (
   `alici` varchar(50) NOT NULL,
   `onem` int(2) NOT NULL,
   `soru_zaman` varchar(500) DEFAULT NULL,
-  `soruldugu_zaman` timestamp NOT NULL DEFAULT current_timestamp(),
+  `soruldugu_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `soru_konu` varchar(200) NOT NULL,
   `soru_detay` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `soru`
@@ -154,7 +133,25 @@ INSERT INTO `soru` (`id`, `soran`, `alici`, `onem`, `soru_zaman`, `soruldugu_zam
 (48, 'admin', 'user', 3, '02/19/2020 15:27', '2020-02-18 12:27:28', 'haydaaaaaa', 'aaaaaaaaaaa'),
 (49, 'admin', 'kullanici1', 2, '02/19/2020 16:06', '2020-02-18 13:06:35', 'Resim Deneme12223', 'dsadas'),
 (50, 'admin', 'user', 2, '02/19/2020 16:07', '2020-02-18 13:07:19', 'resim deneme123', 'aaaaaaaaa'),
-(51, 'admin', 'kullanici1', 1, '02/19/2020 16:20', '2020-02-18 13:20:25', 'olsun', 'artık');
+(51, 'admin', 'kullanici1', 1, '02/19/2020 16:20', '2020-02-18 13:20:25', 'olsun', 'artık'),
+(52, 'admin', 'user', 1, '02/25/2020 23:03', '2020-02-18 20:03:49', 'konuuu', 'oldu mu resim'),
+(53, 'admin', 'kullanici1', 1, '02/25/2020 23:13', '2020-02-18 20:13:28', 'resimm', 'asdasdasdasdsadafasd123413'),
+(54, 'admin', 'kullanici1', 1, '02/19/2020 23:32', '2020-02-18 20:32:08', 'adsdas', 'das'),
+(55, 'admin', 'kullanici1', 1, '02/19/2020 23:32', '2020-02-18 20:32:09', 'adsdas', 'das'),
+(56, 'admin', 'kullanici1', 1, '02/19/2020 23:32', '2020-02-18 20:32:19', 'adsdas', 'das'),
+(57, 'admin', 'kullanici1', 1, '02/19/2020 23:32', '2020-02-18 20:33:51', 'adsdas', 'das'),
+(58, 'admin', 'kullanici1', 1, '02/26/2020 23:35', '2020-02-18 20:35:21', 'asda', 'as'),
+(59, 'admin', 'kullanici1', 1, '02/26/2020 23:35', '2020-02-18 20:35:29', 'asda', 'as'),
+(60, 'admin', 'user', 1, '02/19/2020 23:40', '2020-02-18 20:40:40', 'dasdas', 'dasdas'),
+(61, 'admin', 'user', 3, '02/19/2020 23:41', '2020-02-18 20:41:14', 'aaaaaaaaaa', 'aaaaaaaaaaaasssssss'),
+(62, 'admin', 'kullanici1', 1, '02/12/2020 23:43', '2020-02-18 20:43:34', 'aaaaaaaaaa', 'aaaaaaaaaaaasssssss'),
+(63, 'admin', 'kullanici1', 1, '02/26/2020 23:44', '2020-02-18 20:44:41', 'aaaaaaa', 'sddsadas'),
+(64, 'admin', 'kullanici1', 1, '02/25/2020 23:51', '2020-02-18 20:51:51', 'dasda', 'dasdas'),
+(65, 'admin', 'kullanici1', 1, '02/19/2020 23:52', '2020-02-18 20:52:36', 'dsada', 'dasda'),
+(66, 'admin', 'kullanici1', 3, '02/12/2020 23:53', '2020-02-18 20:53:24', 'dsadas', 'dsada'),
+(67, 'admin', 'kullanici1', 1, '02/26/2020 00:06', '2020-02-18 21:06:30', 'dsada', 'dsadas'),
+(68, 'admin', 'huseyin', 1, '02/26/2020 00:07', '2020-02-18 21:07:24', 'dasd', 'das'),
+(69, 'admin', 'kullanici1', 1, '02/26/2020 00:07', '2020-02-18 21:08:01', 'dsa', 'dsa');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -167,9 +164,9 @@ ALTER TABLE `cevap`
   ADD PRIMARY KEY (`id`);
 
 --
--- Tablo için indeksler `dosya`
+-- Tablo için indeksler `dosyalar`
 --
-ALTER TABLE `dosya`
+ALTER TABLE `dosyalar`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -177,12 +174,6 @@ ALTER TABLE `dosya`
 --
 ALTER TABLE `kullanici`
   ADD PRIMARY KEY (`kullanici_id`);
-
---
--- Tablo için indeksler `resimler`
---
-ALTER TABLE `resimler`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `soru`
@@ -201,10 +192,10 @@ ALTER TABLE `cevap`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
 
 --
--- Tablo için AUTO_INCREMENT değeri `dosya`
+-- Tablo için AUTO_INCREMENT değeri `dosyalar`
 --
-ALTER TABLE `dosya`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `dosyalar`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
@@ -213,16 +204,10 @@ ALTER TABLE `kullanici`
   MODIFY `kullanici_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Tablo için AUTO_INCREMENT değeri `resimler`
---
-ALTER TABLE `resimler`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
-
---
 -- Tablo için AUTO_INCREMENT değeri `soru`
 --
 ALTER TABLE `soru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

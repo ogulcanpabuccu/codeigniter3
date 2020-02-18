@@ -26,7 +26,7 @@ class File extends CI_Controller
 		if ($this->upload->do_upload("file")) {
 			$success = true;
 			$resim_ad = $this->upload->data("file_name");
-			$resim_yol = "/images/upload/".$resim_ad;
+			$resim_yol = "/images/upload/" . $resim_ad;
 		}
 
 		$arr['success'] = $success;
@@ -36,6 +36,5 @@ class File extends CI_Controller
 
 		header('Content-Type: application/json');
 		echo json_encode($arr);
-
 	}
 }

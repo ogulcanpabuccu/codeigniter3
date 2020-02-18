@@ -87,7 +87,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						<div id="some-dropzone" class="dropzone"></div>
 
 						<div id="dosyalar"></div>
-						
+
 
 					</div>
 					<div class="col-md-12">
@@ -140,13 +140,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					<div id="sonuc"></div>
 			</div>
 			</form>
-			<div title="Dosya Ekle" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<h2 class="text-center">Dosya Ekleyin</h2>
-
-				<form action="/dropzone/upload" class="dropzone" id="dropForm"></form>
-
-			</div>
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<table id="dg"> </table>
@@ -165,78 +159,80 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script>
 			Dropzone.options.someDropzone = {
 				url: "/file/upload",
-				success: function(data,gelenData) {
+				success: function(data, gelenData) {
 					console.log(gelenData);
 					if (gelenData) {
-						$("#dosyalar").append('<input type="hidden" name="dosyalar[]" value="'+gelenData.resim_yol+'" />');
+						$("#dosyalar").append('<input type="hidden" name="dosyalar[]" value="' + gelenData.resim_yol + '" />');
 					}
 				}
 			};
 		</script>
 
 		<script type="text/javascript">
-			$('#dg').datagrid({
-				url: '/kullanici/sorugonder',
-				width: 900,
-				pagination: true,
-				rownumbers: true,
-				ctrlSelect: true,
-				onClickRow(index, row) {
-					console.log('row', row);
+			$(function(sorudetay) {
+				$('#dg').datagrid({
+					url: '/kullanici/sorugonder',
+					width: 900,
+					pagination: true,
+					rownumbers: true,
+					ctrlSelect: true,
+					onClickRow(index, row) {
+						console.log('row', row);
 
-					$('#tt').tabs('add', {
-						id: 'sorutab' + row.id,
-						title: "#" + row.id + " - " + row.soru_konu,
-						closable: true,
-						href: '/kullanici/sorudetay/' + row.id,
+						$('#tt').tabs('add', {
+							id: 'sorutab' + row.id,
+							title: "#" + row.id + " - " + row.soru_konu,
+							closable: true,
+							href: '/kullanici/sorudetay/' + row.id,
 
-					});
+						});
 
-				},
+					},
 
-				columns: [
-					[{
-							field: 'soran',
-							title: 'Soran Kişi',
-							width: 80
-						},
-						{
-							field: 'alici',
-							title: 'Kime Sordu',
-							width: 100
-						},
-						{
-							field: 'onem',
-							title: 'Önemi',
-							width: 60,
+					columns: [
+						[{
+								field: 'soran',
+								title: 'Soran Kişi',
+								width: 80
+							},
+							{
+								field: 'alici',
+								title: 'Kime Sordu',
+								width: 100
+							},
+							{
+								field: 'onem',
+								title: 'Önemi',
+								width: 60,
 
-						},
-						{
-							field: 'soru_konu',
-							title: 'Konu',
-							width: 100,
+							},
+							{
+								field: 'soru_konu',
+								title: 'Konu',
+								width: 100,
 
-						},
-						{
-							field: 'soru_zaman',
-							title: 'İş Tamamlama Zamanı',
-							width: 150,
+							},
+							{
+								field: 'soru_zaman',
+								title: 'İş Tamamlama Zamanı',
+								width: 150,
 
-						},
-						{
-							field: 'cevapsayi',
-							title: 'Cevaplanma Sayısı',
-							width: 130,
+							},
+							{
+								field: 'cevapsayi',
+								title: 'Cevaplanma Sayısı',
+								width: 130,
 
-						},
-						{
-							field: 'soncevapzamani',
-							title: 'Son Cevaplanma Zamanı',
-							width: 170,
+							},
+							{
+								field: 'soncevapzamani',
+								title: 'Son Cevaplanma Zamanı',
+								width: 170,
 
-						}
+							}
+						]
 					]
-				]
+				});
 			});
 		</script>
 
@@ -251,7 +247,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						data: $('#FormID1').serialize(),
 						success: function(gelenveri) {
 							if (gelenveri.success) {
-								$("#sonuc").html('<a href="/soru/detay/' + gelenveri.soruId + '">soruya git</a>');
+								$("#sonuc").html('<a href="/kullanici/sorudetay/' + gelenveri.soruId + '">soruya git</a>');
 							} else {
 								$("#sonuc").html(gelenveri.hataMesaji);
 							}

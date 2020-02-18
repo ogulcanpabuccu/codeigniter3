@@ -41,13 +41,10 @@ class Kullanici extends CI_Controller
 				print_r($this->session->get_userdata());*/
 
 				redirect("Kullanici/index");
-				
 			} else {
 
 
 				echo "giriş başarısız";
-
-
 			}
 		}
 	}
@@ -147,9 +144,17 @@ class Kullanici extends CI_Controller
 					$hataMesaji = 'Soru eklendi';
 					$arr['soruId'] = $sorukaydet;
 
-					if(count($dosyalar) > 0){
-						foreach($dosyalar as $resim_yol){
-							// resimler tablosuna soruid ve yol u kaydeden method 
+					if (isset($dosyalar)) {
+						foreach ($dosyalar as $resim_yol) {
+							// resimler tablosuna soruid ve yol u kaydeden method
+							$data = array(
+								"soru_id" => $sorukaydet,
+								"dosya_url" => $resim_yol
+							);
+
+
+
+							$this->kullanici_model->dosyakaydet($data);
 						}
 					}
 				} else {
@@ -164,8 +169,6 @@ class Kullanici extends CI_Controller
 
 			echo json_encode($arr);
 		}
-
-
 	}
 
 
