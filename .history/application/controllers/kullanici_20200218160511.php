@@ -133,7 +133,7 @@ class Kullanici extends CI_Controller
 				);
 
 				$sorukaydet = $this->kullanici_model->sorukaydet($sorudata);
-				$lastid = $this->kullanici_model->lastid();
+				$lastid=$this->kullanici_model->lastid();
 
 				if ($sorukaydet) {
 					$success = true;
@@ -163,14 +163,13 @@ class Kullanici extends CI_Controller
 			$dosya_adi = $this->upload->data("file_name");
 			$data = array(
 
-				"soru_id" => $lastid,
 				"resim_ad" => $dosya_adi,
 				"resim_yol" => base_url("images/upload/$dosya_adi")
 
 			);
 
 
-			$this->kullanici_model->fotokaydet($data);
+			$fotoinsert = $this->kullanici_model->fotokaydet($data);
 		}
 	}
 

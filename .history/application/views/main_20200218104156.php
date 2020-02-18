@@ -83,15 +83,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<label>Soran : </label> <input class="easyui-textbox" readonly style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
 						</div>
 
-
-						<div id="some-dropzone" class="dropzone"></div>
-
+						<div id="myId" class="fallback dropzone">
+							<input name="file" type="file" multiple />
+						</div>
 
 
 					</div>
-					<div class="col-md-12">
+					<div style="margin-top:-110px;" class="col-md-6">
 
-						<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
+						<label class="mr-2" >Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
 							<option value="0">Kullanıcı Seçiniz</option>
 							<? foreach ($kullanicilar as $kullanici) { ?>
 								<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
@@ -105,7 +105,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-						<div class="col-md-6">
+						<div class="col-md-6 mt-2">
 
 							<label>Önem Durumu :</label> <select id="onem" name="onem" class="easyui-combobox" style="width:100px;">
 								<option value="1">1</option>
@@ -120,32 +120,26 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</div>
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6 mt-2">
 
 							<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
 
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12 mt-2">
 
 							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
 
 						</div>
 					</div>
 					<div class="row">
-						<button onclick="$.sorukaydet()" type="submit">Gönder</button>
+						<button class="btn btn-success my-2 ml-3" onclick="$.sorukaydet()" type="submit">Gönder</button>
 					</div>
 					<div id="sonuc"></div>
 			</div>
 			</form>
-			<div title="Dosya Ekle" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
-
-				<h2 class="text-center">Dosya Ekleyin</h2>
-
-				<form action="/dropzone/upload" class="dropzone" id="dropForm"></form>
-
-			</div>
+			
 			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<table id="dg"> </table>
@@ -160,15 +154,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 	<footer>
 
+		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script type="text/javascript" src="/assets/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="/assets/dropzone.js"></script>
-		<script>
-			Dropzone.options.someDropzone = {
-				url: "/file/upload"
-			};
+		<script type="text/javascript">
+			var myDropzone = new Dropzone("div#myId", {
+				url: "/file/post"
+			});
+			$("div#myId").dropzone({
+				url: "/file/post"
+			});
 		</script>
-
+		
 		<script type="text/javascript">
 			$('#dg').datagrid({
 				url: '/kullanici/sorugonder',

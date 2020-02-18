@@ -165,7 +165,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script>
 			Dropzone.options.someDropzone = {
-				url: "/file/upload"
+				url: "/kullanici/kaydet"
 			};
 		</script>
 

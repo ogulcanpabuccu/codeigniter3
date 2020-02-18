@@ -83,9 +83,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							<label>Soran : </label> <input class="easyui-textbox" readonly style="width:100px" name="soran" value="<?php echo $this->session->kullanici_mail ?>">
 						</div>
 
-
-						<div id="some-dropzone" class="dropzone"></div>
-
+						<div id="myId" class="fallback dropzone">
+							<input name="file" type="file" multiple />
+						</div>
 
 
 					</div>
@@ -160,15 +160,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	</div>
 	<footer>
 
+		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script type="text/javascript" src="/assets/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
-		<script type="text/javascript" src="/assets/dropzone.js"></script>
-		<script>
-			Dropzone.options.someDropzone = {
-				url: "/file/upload"
-			};
-		</script>
-
+		
 		<script type="text/javascript">
 			$('#dg').datagrid({
 				url: '/kullanici/sorugonder',

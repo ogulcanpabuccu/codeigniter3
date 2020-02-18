@@ -161,14 +161,15 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<footer>
 
 		<script type="text/javascript" src="/assets/jquery.min.js"></script>
-		<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
+		<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>		
 		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script>
-			Dropzone.options.someDropzone = {
-				url: "/file/upload"
-			};
+		Dropzone.options.someDropzone = {
+  url: "/file/post"
+};
+		
 		</script>
-
+		
 		<script type="text/javascript">
 			$('#dg').datagrid({
 				url: '/kullanici/sorugonder',

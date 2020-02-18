@@ -82,6 +82,9 @@ class Kullanici extends CI_Controller
 			$day = $this->input->post('day');
 			$sorukonu = $this->input->post('sorukonu');
 			$sorudetay = $this->input->post('sorudetay');
+			$file = $this->input->post('file');
+			
+
 
 			$err = 0;
 			$success = false;
@@ -115,6 +118,7 @@ class Kullanici extends CI_Controller
 				$err++;
 				$hataMesaji = 'Sorunuzu Girin';
 			}
+			//Resim için Uzantı kontrolü yapılacak.
 
 			if ($err > 0) {
 				//echo $hataMesaji;
@@ -129,11 +133,12 @@ class Kullanici extends CI_Controller
 					"onem" => $onem,
 					"soru_zaman" => $day,
 					"soru_konu" => $sorukonu,
-					"soru_detay" => $sorudetay
+					"soru_detay" => $sorudetay,
+					"soru_resim" => $file
+					
 				);
 
 				$sorukaydet = $this->kullanici_model->sorukaydet($sorudata);
-				$lastid = $this->kullanici_model->lastid();
 
 				if ($sorukaydet) {
 					$success = true;
@@ -151,39 +156,19 @@ class Kullanici extends CI_Controller
 
 			echo json_encode($arr);
 		}
-
-		$config["allowed_types"] = "jpg|png";
-		$config["upload_path"] = "images/upload/";
-
-		$this->load->library("upload", $config);
-
-
-		if ($this->upload->do_upload("file")) {
-
-			$dosya_adi = $this->upload->data("file_name");
-			$data = array(
-
-				"soru_id" => $lastid,
-				"resim_ad" => $dosya_adi,
-				"resim_yol" => base_url("images/upload/$dosya_adi")
-
-			);
-
-
-			$this->kullanici_model->fotokaydet($data);
-		}
 	}
 
 
 	public function sorugonder()
 	{
-
-
+		
+	
 		$cevap = $this->kullanici_model->cevapsayi();
-
-
-
+		
+		
+		
 		echo json_encode($cevap);
+
 	}
 
 

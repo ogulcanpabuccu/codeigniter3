@@ -84,7 +84,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 
 
-						<div id="some-dropzone" class="dropzone"></div>
+						<div id="some-dropzonea" class="dropzone"></div>
 
 
 
@@ -165,7 +165,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script type="text/javascript" src="/assets/dropzone.js"></script>
 		<script>
 			Dropzone.options.someDropzone = {
-				url: "/file/upload"
+				url: "/file/post"
 			};
 		</script>
 

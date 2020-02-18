@@ -83,14 +83,13 @@ class kullanici_model extends CI_Model
     public function fotokaydet($data = [])
     {
 
-        return $this->db->insert("resimler", $data);
+        return $this->db->insert("soru", $data);
     }
 
     public function lastid()
     {
 
-
-        return $this->db->insert_id();
         
+
     }
 }

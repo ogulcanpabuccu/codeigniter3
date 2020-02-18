@@ -80,17 +80,12 @@ class kullanici_model extends CI_Model
 
         return $this->db->get()->result();
     }
-    public function fotokaydet($data = [])
-    {
-
-        return $this->db->insert("resimler", $data);
-    }
-
-    public function lastid()
+    public function fotokaydet()
     {
 
 
-        return $this->db->insert_id();
         
+
+
     }
 }
