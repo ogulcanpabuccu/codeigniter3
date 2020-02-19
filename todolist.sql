@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: localhost
--- Üretim Zamanı: 18 Şub 2020, 21:08:29
--- Sunucu sürümü: 8.0.17
--- PHP Sürümü: 7.3.10
+-- Anamakine: 127.0.0.1
+-- Üretim Zamanı: 19 Şub 2020, 15:45:42
+-- Sunucu sürümü: 10.4.11-MariaDB
+-- PHP Sürümü: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cevap` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
-  `cevaplayan_id` int(11) NOT NULL DEFAULT '0',
+  `cevaplayan_id` int(11) NOT NULL DEFAULT 0,
   `cevap_detay` text NOT NULL,
-  `cevaplama_zamani` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `cevaplama_zamani` datetime NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `cevap`
@@ -49,7 +49,13 @@ INSERT INTO `cevap` (`id`, `soru_id`, `cevaplayan_id`, `cevap_detay`, `cevaplama
 (120, 18, 1, 'yapma bee', '2020-02-17 13:46:43'),
 (121, 29, 1, 'duygularım darmadağın anlayamaaaazsın\r\n', '2020-02-17 13:50:22'),
 (122, 29, 1, 'bendeki aşk sende olsa yaşayamazsın', '2020-02-17 13:50:43'),
-(123, 28, 1, 'buradan bir atlı geçti\r\n', '2020-02-17 13:51:34');
+(123, 28, 1, 'buradan bir atlı geçti\r\n', '2020-02-17 13:51:34'),
+(124, 30, 2, 'hayat be', '2020-02-19 10:57:26'),
+(125, 19, 2, 'olur olurrr', '2020-02-19 11:04:52'),
+(126, 69, 4, 'oldumu lütfeenn brom benim', '2020-02-19 14:11:55'),
+(127, 32, 1, 'merhaba kanka', '2020-02-19 14:16:27'),
+(128, 53, 2, 'dsadas', '2020-02-19 17:11:02'),
+(129, 53, 2, 'sdasa', '2020-02-19 17:11:12');
 
 -- --------------------------------------------------------
 
@@ -61,7 +67,7 @@ CREATE TABLE `dosyalar` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
   `dosya_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `dosyalar`
@@ -80,9 +86,9 @@ INSERT INTO `dosyalar` (`id`, `soru_id`, `dosya_url`) VALUES
 
 CREATE TABLE `kullanici` (
   `kullanici_id` int(11) NOT NULL,
-  `kullanici_mail` varchar(80) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_adsoyad` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL
+  `kullanici_mail` varchar(80) COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_adsoyad` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_password` varchar(50) COLLATE utf8_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
@@ -107,10 +113,10 @@ CREATE TABLE `soru` (
   `alici` varchar(50) NOT NULL,
   `onem` int(2) NOT NULL,
   `soru_zaman` varchar(500) DEFAULT NULL,
-  `soruldugu_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `soruldugu_zaman` timestamp NOT NULL DEFAULT current_timestamp(),
   `soru_konu` varchar(200) NOT NULL,
   `soru_detay` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `soru`
@@ -151,7 +157,18 @@ INSERT INTO `soru` (`id`, `soran`, `alici`, `onem`, `soru_zaman`, `soruldugu_zam
 (66, 'admin', 'kullanici1', 3, '02/12/2020 23:53', '2020-02-18 20:53:24', 'dsadas', 'dsada'),
 (67, 'admin', 'kullanici1', 1, '02/26/2020 00:06', '2020-02-18 21:06:30', 'dsada', 'dsadas'),
 (68, 'admin', 'huseyin', 1, '02/26/2020 00:07', '2020-02-18 21:07:24', 'dasd', 'das'),
-(69, 'admin', 'kullanici1', 1, '02/26/2020 00:07', '2020-02-18 21:08:01', 'dsa', 'dsa');
+(69, 'admin', 'kullanici1', 1, '02/26/2020 00:07', '2020-02-18 21:08:01', 'dsa', 'dsa'),
+(70, 'user', 'huseyin', 1, '02/20/2020 17:13', '2020-02-19 14:13:42', 'dsafsdasdasdasfsadslkhfaslkşdkasşfjaslşdkawodşalmfkısjdmsşaldışawmşıfamdspaşdmşa', 'dsadas'),
+(71, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:13', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(72, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:14', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(73, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:15', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(74, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:15', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(75, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:15', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(76, 'user', 'admin', 1, '02/05/2020 17:16', '2020-02-19 14:16:15', 'flaksdlasşkdasnfalskjdlsakjdşaskşdlaskldaskşldskşşdlsakl', 'dsadas'),
+(77, 'user', 'admin', 1, '02/25/2020 17:17', '2020-02-19 14:17:18', 'ldsalkjdaşlsjdşlsakşldskaşldasdasdasfsaddasd', 'dsadasda'),
+(78, 'user', 'admin', 1, '02/25/2020 17:17', '2020-02-19 14:17:37', 'dsad', 'dsadasda'),
+(79, 'user', 'admin', 1, '02/25/2020 17:17', '2020-02-19 14:17:45', 'dsad', 'dsadasda'),
+(80, 'user', 'kullanici1', 1, '02/26/2020 17:21', '2020-02-19 14:22:05', 'ahaaa', 'dsadas');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -189,7 +206,7 @@ ALTER TABLE `soru`
 -- Tablo için AUTO_INCREMENT değeri `cevap`
 --
 ALTER TABLE `cevap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=130;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `dosyalar`
@@ -207,7 +224,7 @@ ALTER TABLE `kullanici`
 -- Tablo için AUTO_INCREMENT değeri `soru`
 --
 ALTER TABLE `soru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
