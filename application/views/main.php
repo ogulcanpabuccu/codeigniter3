@@ -23,14 +23,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 <body>
 
-	<div class="container mt-3">
+	<div  style="margin-left: 350px;" class="container mt-3">
 
 
 
-		<div id="p" class="easyui-panel" title="My Panel" style="width:1100px;height:600px;padding:10px;background:#fafafa;" data-options="iconCls:'icon-save',closable:true,
+		<div id="p" class="easyui-panel" title="My Panel" style="width:1300px;height:800px;padding:10px;background:#fafafa;" data-options="iconCls:'icon-save',closable:true,
                 collapsible:true,minimizable:true,maximizable:true">
 
-			<div id="tt" class="easyui-tabs" style="width:999px;height:499px;">
+			<div id="tt" class="easyui-tabs" style="width:1250px;height:740px;">
 
 				<div title="Giriş" style="padding:20px;display:none;">
 
@@ -84,36 +84,37 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						</div>
 
 
-						<div id="some-dropzone" class="dropzone"></div>
+						<div id="some-dropzone" style=" margin: auto;" class="dropzone"></div>
 
 						<div id="dosyalar"></div>
 
 
 					</div>
-					<div class="col-md-12">
+					<div class="row">
+						
+					
+					<div class="col-md-6" style="margin-top: -110px;">
 
 						<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
 							<option value="0">Kullanıcı Seçiniz</option>
 							<? foreach ($kullanicilar as $kullanici) { ?>
+
 								<? if ($kullanici->kullanici_id != $this->session->kullanici_id) { ?>
 									<option value="<? echo $kullanici->kullanici_mail; ?>"><? echo $kullanici->kullanici_mail; ?></option>
 								<? } ?>
+
 							<? } ?>
 						</select>
 					</div>
-
+					</div>
 					<div class="row">
-
-
-
-						<div class="col-md-6">
+						<div class="col-md-6" style="margin-top: -70px;">
 
 							<label>Önem Durumu :</label> <select id="onem" name="onem" class="easyui-combobox" style="width:100px;">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 							</select>
-
 							<input class="easyui-datetimebox" name="day" id="day1" data-options="required:true,showSeconds:false" value="" prompt="Ay/Gün/Yıl Saat:Dakika" style="width:150px">
 
 						</div>
@@ -121,14 +122,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 					</div>
 
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6" style="margin-top: -30px;" >
 
 							<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
 
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-6">
 
 							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
 
@@ -156,7 +157,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		<script type="text/javascript" src="/assets/jquery.min.js"></script>
 		<script type="text/javascript" src="/assets/jquery.easyui.min.js"></script>
 		<script type="text/javascript" src="/assets/dropzone.js"></script>
-		<script>
+		<script type="text/javascript">
 			Dropzone.options.someDropzone = {
 				url: "/file/upload",
 				success: function(data, gelenData) {
@@ -172,9 +173,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$(function(sorudetay) {
 				$('#dg').datagrid({
 					url: '/kullanici/sorugonder',
-					width: 900,
+					width: 1050,
 					pagination: true,
 					rownumbers: true,
+
 					ctrlSelect: true,
 					onClickRow(index, row) {
 						console.log('row', row);
@@ -225,9 +227,28 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 							},
 							{
+								field: 'cevaplayan',
+								title: 'Cevapladın mı ?',
+								width: 110,
+								formatter: function(value) {
+									if (value > 0) {
+
+										return 'Evet (' + value + ')';
+									} else {
+										return 'Hayır';
+									}
+								}
+							},
+							{
+								field: 'dosyasayi',
+								title: 'Dosya Sayısı',
+								width: 100,
+
+							},
+							{
 								field: 'soncevapzamani',
 								title: 'Son Cevaplanma Zamanı',
-								width: 170,
+								width: 190,
 
 							}
 						]
@@ -238,7 +259,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 		<script type="text/javascript">
 			$(function() {
-
+				//<a href="/kullanici/sorudetay/' + gelenveri.soruId + '">soruya git</a>
 				$.sorukaydet = function() {
 					$.ajax({
 						url: '/kullanici/kaydet',
@@ -247,7 +268,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 						data: $('#FormID1').serialize(),
 						success: function(gelenveri) {
 							if (gelenveri.success) {
-								$("#sonuc").html('<a href="/kullanici/sorudetay/' + gelenveri.soruId + '">soruya git</a>');
+								$("#sonuc").html('Soru Başarıyla eklendi.');
 							} else {
 								$("#sonuc").html(gelenveri.hataMesaji);
 							}

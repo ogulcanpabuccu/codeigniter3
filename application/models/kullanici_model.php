@@ -60,9 +60,22 @@ class kullanici_model extends CI_Model
         $this->db->select('*');
         $this->db->from('cevap c');
         $this->db->join('kullanici k', 'k.kullanici_id = c.cevaplayan_id', 'left');
+
         $this->db->where("c.soru_id", $id);
+
         return $this->db->get()->result();
     }
+
+    public function dosyabul($id = 0)
+    {
+
+        $this->db->select('*');
+        $this->db->from('dosyalar d');
+        $this->db->join('soru s', 'd.soru_id=s.id', 'left');
+        $this->db->where("d.soru_id", $id);
+        return $this->db->get()->result();
+    }
+
 
     public function sorudetay($id = 0)
     {
@@ -70,12 +83,14 @@ class kullanici_model extends CI_Model
         return $this->db->where("id", $id)->get("soru")->row();
     }
 
-    public function cevapsayi()
+    public function cevapsayi($sessionid = 0)
     {
 
-
-        $this->db->select('s.* , (SELECT COUNT(c.id) from cevap c where s.id=c.soru_id) as cevapsayi,
-       (SELECT ct.cevaplama_zamani from cevap ct where s.id=ct.soru_id order by cevaplama_zamani DESC LIMIT 1) as soncevapzamani');
+        $this->db->select("s.* , (SELECT COUNT(c.id) from cevap c where s.id=c.soru_id) as cevapsayi,
+       (SELECT ct.cevaplama_zamani from cevap ct where s.id=ct.soru_id order by cevaplama_zamani DESC LIMIT 1) as soncevapzamani ,
+       (SELECT COUNT(ci.cevaplayan_id) from cevap ci where s.id=ci.soru_id and ci.cevaplayan_id='".$this->db->escape_str($sessionid)."') as cevaplayan,
+       (SELECT COUNT(d.soru_id)from dosyalar d where s.id=d.soru_id)as dosyasayi");
+        
         $this->db->from('soru s');
 
         return $this->db->get()->result();

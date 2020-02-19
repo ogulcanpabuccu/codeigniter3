@@ -13,7 +13,9 @@ class File extends CI_Controller
 
 	public function upload()
 	{
-		$config["allowed_types"] = "jpg|png";
+
+		//$config["allowed_types"] = "*";
+		$config["allowed_types"] = "jpg|png|pdf|doc|docx|xls|xlsx|";
 		$config["upload_path"] = "images/upload/";
 
 		$success = false;
@@ -36,5 +38,6 @@ class File extends CI_Controller
 
 		header('Content-Type: application/json');
 		echo json_encode($arr);
+		
 	}
 }

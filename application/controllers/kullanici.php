@@ -105,6 +105,10 @@ class Kullanici extends CI_Controller
 				$err++;
 				$hataMesaji = 'Konu Belirtin';
 			}
+			if (strlen($sorukonu) > 25) {
+				$err++;
+				$hataMesaji = 'Az ve Öz Bir konu belirtin.';
+			}
 			if (empty($day)) {
 				$err++;
 				$hataMesaji = 'Tarih Saat Seçin';
@@ -158,7 +162,7 @@ class Kullanici extends CI_Controller
 						}
 					}
 				} else {
-					$hataMesaji = 'Soru EKlenemedi';
+					$hataMesaji = 'Soru Eklenemedi';
 				}
 			}
 
@@ -175,10 +179,12 @@ class Kullanici extends CI_Controller
 	public function sorugonder()
 	{
 
+		$sessionid = $this->session->get_userdata()['kullanici_id'];
 
-		$cevap = $this->kullanici_model->cevapsayi();
-
-
+		$cevap = $this->kullanici_model->cevapsayi($sessionid);
+		/*echo "<pre>";
+		print_r($cevap);
+		exit;*/
 
 		echo json_encode($cevap);
 	}
@@ -191,18 +197,21 @@ class Kullanici extends CI_Controller
 
 		$cevaplar = $this->kullanici_model->cevapbul($id);
 
+		$dosyabul = $this->kullanici_model->dosyabul($id);
 
-		/*echo "<pre>";
+
+		/* echo "<pre>";
 		print_r($cevaplar);
-		exit;*/
+		exit; */
 
 
-
+		$viewData['dosyalar'] = $dosyabul;
 		$viewData['cevaplar'] = $cevaplar;
 		$viewData['sorudetay'] = $sorudetay;
 
 		$this->load->view("soru", $viewData);
 	}
+
 
 	public function cevapkaydet($id = 0)
 	{
@@ -253,8 +262,9 @@ class Kullanici extends CI_Controller
 	public function cevapsayi($cevapsayi = 0)
 	{
 		$cevapsayi = $this->kullanici_model->cevapsayi($cevapsayi);
+		/*
 		echo "<pre>";
 		print_r($cevapsayi);
-		exit;
+		exit;*/
 	}
 }

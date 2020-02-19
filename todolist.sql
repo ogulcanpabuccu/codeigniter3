@@ -34,7 +34,7 @@ CREATE TABLE `cevap` (
   `cevaplayan_id` int(11) NOT NULL DEFAULT '0',
   `cevap_detay` text NOT NULL,
   `cevaplama_zamani` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `cevap`
@@ -61,7 +61,7 @@ CREATE TABLE `dosyalar` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
   `dosya_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `dosyalar`
@@ -110,7 +110,7 @@ CREATE TABLE `soru` (
   `soruldugu_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `soru_konu` varchar(200) NOT NULL,
   `soru_detay` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Tablo döküm verisi `soru`
