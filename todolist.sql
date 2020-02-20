@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
--- Anamakine: 127.0.0.1
--- Üretim Zamanı: 20 Şub 2020, 15:49:05
--- Sunucu sürümü: 10.4.11-MariaDB
--- PHP Sürümü: 7.4.2
+-- Anamakine: localhost
+-- Üretim Zamanı: 20 Şub 2020, 22:12:49
+-- Sunucu sürümü: 8.0.17
+-- PHP Sürümü: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -31,10 +31,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `cevap` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
-  `cevaplayan_id` int(11) NOT NULL DEFAULT 0,
+  `cevaplayan_id` int(11) NOT NULL DEFAULT '0',
   `cevap_detay` text NOT NULL,
-  `cevaplama_zamani` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `cevaplama_zamani` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `cevap`
@@ -59,7 +59,8 @@ INSERT INTO `cevap` (`id`, `soru_id`, `cevaplayan_id`, `cevap_detay`, `cevaplama
 (130, 17, 1, 'yapma bee', '2020-02-20 09:16:00'),
 (131, 83, 1, 'hayret', '2020-02-20 09:33:03'),
 (132, 84, 1, 'adam', '2020-02-20 11:40:13'),
-(133, 53, 1, 'cevap', '2020-02-20 15:37:09');
+(133, 53, 1, 'cevap', '2020-02-20 15:37:09'),
+(134, 93, 1, 'cevap\r\n', '2020-02-20 22:46:12');
 
 -- --------------------------------------------------------
 
@@ -71,7 +72,15 @@ CREATE TABLE `dosyalar` (
   `id` int(11) NOT NULL,
   `soru_id` int(11) NOT NULL,
   `dosya_url` varchar(500) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Tablo döküm verisi `dosyalar`
+--
+
+INSERT INTO `dosyalar` (`id`, `soru_id`, `dosya_url`) VALUES
+(11, 103, 'images/upload/indir.jpg'),
+(12, 104, '/images/upload/indir1.jpg');
 
 -- --------------------------------------------------------
 
@@ -81,10 +90,10 @@ CREATE TABLE `dosyalar` (
 
 CREATE TABLE `kullanici` (
   `kullanici_id` int(11) NOT NULL,
-  `kullanici_mail` varchar(80) COLLATE utf8_turkish_ci NOT NULL,
-  `departman` varchar(200) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_adsoyad` varchar(50) COLLATE utf8_turkish_ci NOT NULL,
-  `kullanici_password` varchar(50) COLLATE utf8_turkish_ci NOT NULL
+  `kullanici_mail` varchar(80) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `departman` varchar(200) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_adsoyad` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL,
+  `kullanici_password` varchar(50) CHARACTER SET utf8 COLLATE utf8_turkish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_turkish_ci;
 
 --
@@ -110,11 +119,11 @@ CREATE TABLE `soru` (
   `alici` varchar(50) NOT NULL,
   `onem` int(2) NOT NULL,
   `soru_zaman` varchar(500) DEFAULT NULL,
-  `soruldugu_zaman` timestamp NOT NULL DEFAULT current_timestamp(),
+  `soruldugu_zaman` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `soru_konu` varchar(200) NOT NULL,
   `soru_detay` text NOT NULL,
   `sonuc` varchar(10) NOT NULL DEFAULT '0'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Tablo döküm verisi `soru`
@@ -124,7 +133,18 @@ INSERT INTO `soru` (`id`, `soran`, `departman`, `alici`, `onem`, `soru_zaman`, `
 (92, 'Kadir İnanır', '1', 'Hüseyin Ulan', 2, '02/19/2020 16:18', '2020-02-20 13:19:03', 'konuuu', 'dsada', '0'),
 (93, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 16:19', '2020-02-20 13:19:53', 'konu2', 'agagagga', '0'),
 (94, 'Kadir İnanır', '1', 'Hüseyin Ulan', 3, '02/27/2020 17:20', '2020-02-20 14:20:52', 'dsadas', 'dsadas', '0'),
-(95, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 17:33', '2020-02-20 14:33:38', 'olduumu hocam', 'olmuştur be', '1');
+(95, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 17:33', '2020-02-20 14:33:38', 'olduumu hocam', 'olmuştur be', '1'),
+(96, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 3, '02/21/2020 22:48', '2020-02-20 19:48:31', 'dşasfkjuasbdkljşlasdjas', 'dsasdas', '1'),
+(97, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 3, '02/21/2020 22:49', '2020-02-20 19:49:51', 'dsadas', 'dsadas', '0'),
+(98, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 22:53', '2020-02-20 19:54:03', 'dsadas', 'dasdas', '0'),
+(99, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 2, '02/27/2020 22:55', '2020-02-20 19:55:29', 'dasdas', 'dasdas', '0'),
+(100, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 2, '02/20/2020 22:56', '2020-02-20 19:56:36', 'dasdas', 'dsadas', '0'),
+(101, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/20/2020 22:56', '2020-02-20 19:57:14', 'dsadas', 'dsadsa', '0'),
+(102, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 22:58', '2020-02-20 19:58:34', 'dsa', 'dasdsa', '0'),
+(103, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/21/2020 23:00', '2020-02-20 20:00:35', 'dsadas', 'dsadsa', '0'),
+(104, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/27/2020 23:01', '2020-02-20 20:01:43', 'dsadas', 'dsdas', '0'),
+(105, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/19/2020 01:04', '2020-02-20 22:04:43', 'dsada', 'dsads', '0'),
+(106, 'Oğulcan Pabuccu', '2', 'Ahmet Mehmet', 1, '02/21/2020 01:04', '2020-02-20 22:05:03', 'dsada', 'dsadas', '0');
 
 --
 -- Dökümü yapılmış tablolar için indeksler
@@ -162,13 +182,13 @@ ALTER TABLE `soru`
 -- Tablo için AUTO_INCREMENT değeri `cevap`
 --
 ALTER TABLE `cevap`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=135;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `dosyalar`
 --
 ALTER TABLE `dosyalar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `kullanici`
@@ -180,7 +200,7 @@ ALTER TABLE `kullanici`
 -- Tablo için AUTO_INCREMENT değeri `soru`
 --
 ALTER TABLE `soru`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -10,14 +10,11 @@
 				<hr>
 			</div>
 
-			<!--	<div class="text-center">
-					<img  width="100" src="<?php echo $dosya->dosya_url ?>" class="rounded" alt="...">
-				</div>
-	-->
 			<div class="col-md-6">
 				<?php
-				$i=0;
-				foreach ($dosyalar as $dosya) { $i++;?>
+				$i = 0;
+				foreach ($dosyalar as $dosya) {
+					$i++; ?>
 
 
 					<a id="btn" href="<?php echo $dosya->dosya_url ?>" class="easyui-linkbutton" target="_blank" data-options="iconCls:'icon-search'">Belge <?php echo  $i; ?></a>

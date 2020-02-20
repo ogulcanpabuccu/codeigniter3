@@ -31,7 +31,7 @@ class Kullanici extends CI_Controller
 
 			if (count($kullanici) > 0) {
 
-				$sessionData = array('kullanici_id' => $kullanici[0]->kullanici_id, 'kullanici_mail' => $kullanici[0]->kullanici_mail, 'sifre' => $kullanici[0]->kullanici_password,'kullanici_adsoyad'=>$kullanici[0]->kullanici_adsoyad,'departman'=>$kullanici[0]->departman);
+				$sessionData = array('kullanici_id' => $kullanici[0]->kullanici_id, 'kullanici_mail' => $kullanici[0]->kullanici_mail, 'sifre' => $kullanici[0]->kullanici_password, 'kullanici_adsoyad' => $kullanici[0]->kullanici_adsoyad, 'departman' => $kullanici[0]->departman);
 
 				//print_r ($sessionData);
 				//exit;
@@ -106,7 +106,7 @@ class Kullanici extends CI_Controller
 				$err++;
 				$hataMesaji = 'Konu Belirtin';
 			}
-			if (strlen($sorukonu) > 25) {
+			if (strlen($sorukonu) > 20) {
 				$err++;
 				$hataMesaji = 'Az ve Öz Bir konu belirtin.';
 			}
@@ -183,7 +183,7 @@ class Kullanici extends CI_Controller
 
 		$sessionid = $this->session->get_userdata()['kullanici_id'];
 		$departman = $this->session->get_userdata()['departman'];
-		$cevap = $this->kullanici_model->cevapsayi($sessionid,$departman);
+		$cevap = $this->kullanici_model->cevapsayi($sessionid, $departman);
 
 		/*echo "<pre>";
 		print_r($cevap);
@@ -192,13 +192,13 @@ class Kullanici extends CI_Controller
 		echo json_encode($cevap);
 	}
 
-	
+
 	public function sorutamam()
 	{
 
 		$sessionid = $this->session->get_userdata()['kullanici_id'];
 		$departman = $this->session->get_userdata()['departman'];
-		$sorutamam = $this->kullanici_model->sorutamam($sessionid,$departman);
+		$sorutamam = $this->kullanici_model->sorutamam($sessionid, $departman);
 
 		/*echo "<pre>";
 		print_r($cevap);
@@ -230,6 +230,27 @@ class Kullanici extends CI_Controller
 		$this->load->view("soru", $viewData);
 	}
 
+	public function tamamdetay($id = 0)
+	{
+
+		$sorudetay = $this->kullanici_model->sorudetay($id);
+
+		$cevaplar = $this->kullanici_model->cevapbul($id);
+
+		$dosyabul = $this->kullanici_model->dosyabul($id);
+
+
+		/* echo "<pre>";
+		print_r($cevaplar);
+		exit; */
+
+
+		$viewData['dosyalar'] = $dosyabul;
+		$viewData['cevaplar'] = $cevaplar;
+		$viewData['sorudetay'] = $sorudetay;
+
+		$this->load->view("tamamdetay", $viewData);
+	}
 
 	public function cevapkaydet($id = 0)
 	{
@@ -280,8 +301,8 @@ class Kullanici extends CI_Controller
 	public function cevapsayi($cevapsayi = 0)
 	{
 		$cevapsayi = $this->kullanici_model->cevapsayi($cevapsayi);
-		
-		
+
+
 		echo "<pre>";
 		print_r($cevapsayi);
 		exit;

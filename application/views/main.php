@@ -27,10 +27,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
 
-		<div id="p" class="easyui-panel" title="Panel" style="width:1300px;height:800px;padding:10px;background:#fafafa;" data-options="iconCls:'icon-save',closable:true,
+		<div id="p" class="easyui-panel" title="Panel" style="width:1825px;height:800px;padding:10px;background:#fafafa;" data-options="iconCls:'icon-save',closable:true,
                 collapsible:true,minimizable:true,maximizable:true">
 
-			<div id="tt" class="easyui-tabs" style="width:1250px;height:740px;">
+			<div id="tt" class="easyui-tabs" style="width:1800px;height:740px;">
 
 				<div title="Giriş" style="padding:20px;display:none;">
 
@@ -73,35 +73,33 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 			</div>
 
+			<!-- İlk Tab Başlangıç -->
 			<div title="Soru Sor" selected ; data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<form action="" method="POST" onsubmit="return false;" enctype="multipart/form-data" id="FormID1">
 					<div class="row">
 
 
-						<div class="col-md-6">
-							<label>Soran : </label> <input class="easyui-textbox" readonly style="width:150px" name="soran" value="<?php echo $this->session->kullanici_adsoyad ?>">
-						</div>
+
+						<div class="col-md-3">
 
 
-						<div id="dosyalar"></div>
+
+							<label class="mr-3">Soran </label> <input class="rounded" readonly style="width: 150px;  border-color:#95B8E7; margin-left:43px;" name="soran" value="<?php echo $this->session->kullanici_adsoyad ?>">
 
 
-					</div>
-					<div class="row">
+
+							<div id="dosyalar"></div>
 
 
-						<div class="col-md-6">
-							<label>Departmanı : </label> <input class="easyui-textbox" readonly style="width:150px" name="departman" value="<?php echo $this->session->departman ?>">
-						</div>
-
-					</div>
-					<div class="row">
 
 
-						<div class="col-md-6" style="margin-top:10px;">
+							<label>Departmanı</label><input class="rounded" readonly style="width: 150px;  border-color:#95B8E7; margin-left:25px; " name="departman" value="<?php echo $this->session->departman ?>">
 
-							<label>Alıcı Seç : </label> <select id="alici" name="alici" class="easyui-combobox" style="width:100px;">
+
+							<br>
+
+							<label>Alıcı Seç</label> <select id="alici" name="alici" class="rounded" style="width: 150px;  border-color:#95B8E7; margin-left:42px; ">
 								<option value="0">Kullanıcı Seçiniz</option>
 								<? foreach ($kullanicilar as $kullanici) { ?>
 
@@ -111,54 +109,54 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 								<? } ?>
 							</select>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6" style="margin-top: 10px;">
 
-							<label>Önem Durumu :</label> <select id="onem" name="onem" class="easyui-combobox" style="width:100px;">
+							<br>
+							<label>Önem Durumu</label> <select id="onem" name="onem" class="rounded" style="width: 100px;  border-color:#95B8E7; margin-left:1px; ">
 								<option value="1">1</option>
 								<option value="2">2</option>
 								<option value="3">3</option>
 							</select>
-							<input class="easyui-datetimebox" name="day" id="day1" data-options="required:true,showSeconds:false" value="" prompt="Ay/Gün/Yıl Saat:Dakika" style="width:150px">
+							<br>
+							<label>Tarih</label> <input class="easyui-datetimebox" style="margin-left:20px" name="day" id="day1" data-options="required:true,showSeconds:false" value="" prompt="Ay/Gün/Yıl Saat:Dakika" style="width:150px">
 
+							<br>
+
+							<label>Konu</label> <input class="rounded" style="width: 150px; border-color:#95B8E7; margin-left:59px;  " name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
+
+
+
+							<br><br>
+							<textarea class="mr-4" name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
+
+
+							<div class="row" style="margin-top:5px;">
+
+
+								<div id="some-dropzone" style="margin-left: 14px;" class="dropzone"></div>
+							</div>
+							<div class="row">
+								<button onclick="$.sorukaydet()" class="btn btn-success ml-3 mt-3" type="submit">Gönder</button>
+							</div>
+
+							<div id="sonuc"></div>
 						</div>
 
-					</div>
-
-					<div class="row">
-						<div class="col-md-6" style="margin-top: 10px;">
-
-							<label>Konu :</label> <input name="sorukonu" cols="56" rows="5" placeholder="Konu girin"></input>
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6" style="margin-top: 10px;">
-
-							<textarea name="sorudetay" cols="56" rows="5" placeholder="Sorunuzu girin"></textarea>
-
-						</div>
-					</div>
-					<div class="row" style="margin-top:10px;">
-
-
-						<div id="some-dropzone" style="margin-left: 14px;" class="dropzone"></div>
-					</div>
-					<div class="row">
-						<button onclick="$.sorukaydet()" class="btn btn-success ml-3 mt-3" type="submit">Gönder</button>
-					</div>
-
-					<div id="sonuc"></div>
+				</form>
+				<div class="col-md-4">
+					<h3>Sorular</h3>
+					<hr>
+					<!-- İlk Tab Başlangıç -->
+					<table id="dg"></table>
+				</div>
+				<div class="col-md-4">
+					<h3>Tamamlanmış Sorular</h3>
+					<hr>
+					<!-- İlk Tab Başlangıç -->
+					<table id="dg2"></table>
+				</div>
 			</div>
-			</form>
 
-			<div title="Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
-				<table id="dg"> </table>
-
-			</div>
 			<div title="Tamamlanmış Sorular" data-options="closable:true" style="overflow:auto;padding:20px;display:none;">
 
 				<table id="dg2"> </table>
@@ -192,7 +190,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$(function(sorudetay) {
 				$('#dg').datagrid({
 					url: '/kullanici/sorugonder',
-					width: 1070,
+					width: 542,
+					pagination: true,
+					autoRowHeight: true,
 					rownumbers: true,
 					ctrlSelect: true,
 					onClickRow(index, row) {
@@ -215,7 +215,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							{
 								field: 'alici',
 								title: 'Kime Sordu',
-								width: 100,
+								width: 120,
 							},
 							{
 								field: 'onem',
@@ -229,18 +229,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								width: 100,
 
 							},
-							{
+							/*	{
 								field: 'soru_zaman',
 								title: 'İş Tamamlama Zamanı',
 								width: 150,
 
-							},
-							{
+								},*/
+							/*{
 								field: 'cevapsayi',
 								title: 'Cevaplanma Sayısı',
 								width: 130,
 
-							},
+							},*/
 							{
 								field: 'cevaplayan',
 								title: 'Cevapladın mı ?',
@@ -255,18 +255,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									}
 								}
 							},
-							{
-								field: 'dosyasayi',
-								title: 'Dosya Sayısı',
-								width: 100,
+							/*	{
+									field: 'dosyasayi',
+									title: 'Dosya Sayısı',
+									width: 100,
 
-							},
-							{
-								field: 'soncevapzamani',
-								title: 'Son Cevaplanma Zamanı',
-								width: 190,
+								},
+								{
+									field: 'soncevapzamani',
+									title: 'Son Cevaplanma Zamanı',
+									width: 190,
 
-							}
+								}*/
 						]
 					]
 				});
@@ -276,8 +276,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 			$(function(sorudetay) {
 				$('#dg2').datagrid({
 					url: '/kullanici/sorutamam',
-					width: 1070,
+					width: 542,
 					rownumbers: true,
+					pagination: true,
 					ctrlSelect: true,
 					onClickRow(index, row) {
 						console.log('row', row);
@@ -286,7 +287,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							id: 'sorutab' + row.id,
 							title: "#" + row.id + " - " + row.soru_konu,
 							closable: true,
-							href: '/kullanici/sorudetay/' + row.id,
+							href: '/kullanici/tamamdetay/' + row.id,
 						});
 					},
 
@@ -299,7 +300,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 							{
 								field: 'alici',
 								title: 'Kime Sordu',
-								width: 100,
+								width: 120,
 							},
 							{
 								field: 'onem',
@@ -313,18 +314,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 								width: 100,
 
 							},
-							{
-								field: 'soru_zaman',
-								title: 'İş Tamamlama Zamanı',
-								width: 150,
+							/*	{
+									field: 'soru_zaman',
+									title: 'İş Tamamlama Zamanı',
+									width: 150,
 
-							},
+								},
 							{
 								field: 'cevapsayi',
 								title: 'Cevaplanma Sayısı',
 								width: 130,
 
-							},
+							},*/
 							{
 								field: 'cevaplayan',
 								title: 'Cevapladın mı ?',
@@ -339,18 +340,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
 									}
 								}
 							},
-							{
-								field: 'dosyasayi',
-								title: 'Dosya Sayısı',
-								width: 100,
+							/*	{
+									field: 'dosyasayi',
+									title: 'Dosya Sayısı',
+									width: 100,
 
-							},
-							{
-								field: 'soncevapzamani',
-								title: 'Son Cevaplanma Zamanı',
-								width: 190,
+								},
+								{
+									field: 'soncevapzamani',
+									title: 'Son Cevaplanma Zamanı',
+									width: 190,
 
-							}
+								}*/
 						]
 					]
 				});
